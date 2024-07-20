@@ -1,4 +1,3 @@
-
 const BASE_URL = process.env.REACT_APP_API_BASE_URL; //пока норм - но как хранить в "проде"
 if (!BASE_URL) {
   console.error("адрес сервера не найден");
@@ -8,6 +7,7 @@ export interface RequestType {
   method?: string;
   headers?: HeadersInit;
   body?: BodyInit | null;
+  credentials?: RequestCredentials;
 }
 
 export async function apiRequest(
@@ -22,6 +22,7 @@ export async function apiRequest(
       accept: "application/json",
       ...headers,
     },
+    credentials: "include",
   };
 
   if (body) {

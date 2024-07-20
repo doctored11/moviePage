@@ -1,4 +1,3 @@
-
 import { apiRequest } from "./api";
 
 interface User {
@@ -50,3 +49,17 @@ export const loginUser = async ({ email, password }: User): Promise<any> => {
 export const logoutUser = async (): Promise<any> => {
   return apiRequest("/auth/logout", "GET");
 };
+
+//
+
+export const registerUser = async ({ email, password, name, surname }: User) => {
+  try {
+    await regUser({ email, password, name, surname });
+    await loginUser({ email, password });
+    const profile = await getProfile();
+    console.log(profile);
+  } catch (error) {
+    console.error(error);
+  }
+};
+

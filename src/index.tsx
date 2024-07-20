@@ -1,4 +1,10 @@
-import { getProfile, loginUser, logoutUser, regUser } from "./api/authApi";
+import {
+  getProfile,
+  loginUser,
+  logoutUser,
+  regUser,
+  registerUser,
+} from "./api/authApi";
 import { getMoviesByCount, getRandomMovie } from "./api/filmApi";
 import React from "react";
 import ReactDOM from "react-dom";
@@ -8,21 +14,22 @@ getMoviesByCount(22).then(console.log);
 // regUser("почта", "нагоршкесидиткороль", "я", "янович").then((data) =>
 //   console.log(data)
 
-
 // );
-
-
 
 // loginUser("почта", "нагор2шкесидиткороль").then((data) =>
 //   console.log(data)
 // );
 
-loginUser({email:"почта", password:"нагоршкесидиткороль"}).then((data) =>{
-  console.log(data)
-}
-);
-
-// getProfile().then((data) => console.log(data));
+// loginUser({ email: "почта", password: "нагоршкесидиткороль" }).then((data) => {
+//   console.log(data);
+// });
+// registerUser({
+//   email: "почта23",
+//   password: "нагоршкесидиткороль",
+//   name: "Ваня",
+//   surname: "тест",
+// }).then(console.log)
+getProfile().then((data) => console.log(data));
 // logoutUser().then((data) =>
 //   console.log(data)
 // );
