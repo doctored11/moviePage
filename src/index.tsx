@@ -1,3 +1,4 @@
+import { Header } from "./components/header/Header";
 import {
   getProfile,
   loginUser,
@@ -8,35 +9,18 @@ import {
 import { getMoviesByCount, getRandomMovie } from "./api/filmApi";
 import React from "react";
 import ReactDOM from "react-dom";
+import { Main } from "./pages/main/MainPage";
 
 getMoviesByCount(22).then(console.log);
 
 // regUser("почта", "нагоршкесидиткороль", "я", "янович").then((data) =>
 //   console.log(data)
 
-// );
-
-// loginUser("почта", "нагор2шкесидиткороль").then((data) =>
-//   console.log(data)
-// );
-
-// loginUser({ email: "почта", password: "нагоршкесидиткороль" }).then((data) => {
-//   console.log(data);
-// });
-// registerUser({
-//   email: "почта23",
-//   password: "нагоршкесидиткороль",
-//   name: "Ваня",
-//   surname: "тест",
-// }).then(console.log)
-getProfile().then((data) => console.log(data));
-// logoutUser().then((data) =>
-//   console.log(data)
-// );
-
 const App = () => {
   return (
     <>
+      <Header></Header>
+      <Main></Main>
       <h1>Это App у нас - родитель под корнем)</h1>
 
       <img src="source/test.png" alt="так к рессурсам идем"></img>
