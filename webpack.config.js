@@ -2,6 +2,10 @@ const path = require('path')
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
+const webpack = require('webpack');
+
+const dotenv = require('dotenv');
+dotenv.config()
 
 const NODE_ENV = process.env.NODE_ENV;
 const IS_DEV = NODE_ENV == 'development';
@@ -65,6 +69,9 @@ module.exports = {
             patterns: [
                 { from: 'src/source', to: 'source' },
             ],
+        }),
+        new webpack.DefinePlugin({
+            'process.env': JSON.stringify(process.env),
         }),
     ],
     devServer: {
