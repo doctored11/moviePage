@@ -3,6 +3,7 @@ import styles from "./mainPage.module.css";
 
 import { Hero } from "../../components/hero/Hero";
 import { Header } from "../../components/header/Header";
+import { CardList } from "../../components/cardList/CardList";
 
 
 export function MainPage() {
@@ -11,7 +12,7 @@ export function MainPage() {
     
       <Header></Header>
       <Hero></Hero>
-      
+      <CardList></CardList>
     </>
   );
 }
