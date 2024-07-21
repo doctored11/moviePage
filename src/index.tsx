@@ -9,9 +9,12 @@ import {
 import { getMoviesByCount, getRandomMovie } from "./api/filmApi";
 import React from "react";
 import ReactDOM from "react-dom";
-import { Main } from "./pages/main/MainPage";
+import { MainPage } from "./pages/main/MainPage";
+import "./styles/normalize.css"
+import "./styles/global.css"
 
 getMoviesByCount(22).then(console.log);
+
 
 // regUser("почта", "нагоршкесидиткороль", "я", "янович").then((data) =>
 //   console.log(data)
@@ -19,8 +22,7 @@ getMoviesByCount(22).then(console.log);
 const App = () => {
   return (
     <>
-      <Header></Header>
-      <Main></Main>
+      <MainPage></MainPage>
       <h1>Это App у нас - родитель под корнем)</h1>
 
       <img src="source/test.png" alt="так к рессурсам идем"></img>

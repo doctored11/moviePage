@@ -1,5 +1,5 @@
 *{
-    border: 2px solid rgba(4, 175, 4, 0.568);
+    /* border: 2px solid rgba(4, 175, 4, 0.568); */
 }
 
 .modalOverlay {
@@ -12,6 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 21;
   }
   
   .modalContent {

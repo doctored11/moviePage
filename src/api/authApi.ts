@@ -52,7 +52,12 @@ export const logoutUser = async (): Promise<any> => {
 
 //
 
-export const registerUser = async ({ email, password, name, surname }: User) => {
+export const registerUser = async ({
+  email,
+  password,
+  name,
+  surname,
+}: User) => {
   try {
     await regUser({ email, password, name, surname });
     await loginUser({ email, password });
@@ -63,3 +68,43 @@ export const registerUser = async ({ email, password, name, surname }: User) => 
   }
 };
 
+export async function getFavoritesFilms() {
+  try {
+    return apiRequest("/favorites");
+  } catch {
+    console.error("ошибка получения любимых картин");
+  }
+}
+
+export async function setFavoritesFilms(id:number) {
+  const body = new URLSearchParams({
+    id:String(id)
+  });
+  try {
+    const profile = await getProfile();
+    if(!profile) return
+    return apiRequest(
+      "/favorites",
+      "POST",
+      { "Content-Type": "application/x-www-form-urlencoded" },
+      body
+    );
+  } catch {}
+}
+
+
+export async function deleteFavoritesFilms(id:number) {
+  const body = new URLSearchParams({
+    id:String(id)
+  });
+  try {
+    const profile = await getProfile();
+    if(!profile) return
+    return apiRequest(
+      "/favorites",
+      "DELETE",
+      { "Content-Type": "application/x-www-form-urlencoded" },
+      body
+    );
+  } catch {}
+}

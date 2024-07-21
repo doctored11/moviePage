@@ -1,11 +1,50 @@
 .header {
-    background-color: #f8f9fa;
-    padding: 20px;
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+  background-color: var(--color-black);
+  padding: 20px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 1.5rem 0;
+
+  border-color: orange;
+}
+
+.headerFrame {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: "SairaBold";
+
+  font-size: 48px;
+  font-weight: bold;
+  background: linear-gradient(90deg, #6a5dc2, #dc5dfc,#6a5dc2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   
+  background-repeat: no-repeat;
+
+
+  transition: background-position 0.7s cubic-bezier(0.075, 0.82, 0.165, 1);
+  background-size: 200% 100%;
+}
+
+.logo:hover {
+  background-position: 100% 0;
+  cursor: pointer;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}

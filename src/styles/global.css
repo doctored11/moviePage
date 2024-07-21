@@ -1,0 +1,80 @@
+@font-face {
+  font-family: "Play";
+  src: url("../source/fonts/play/Play-Regular.ttf");
+}
+@font-face {
+  font-family: "Saira";
+  src: url("../source/fonts/saira/SairaSemiCondensed-Regular.ttf");
+}
+@font-face {
+  font-family: "SairaBold";
+
+  src: url("../source/fonts/saira/SairaSemiCondensed-Bold.ttf");
+}
+:root {
+  --color-black: #000;
+  --color-white: #fff;
+
+  --color-gray: #393b3c;
+  --color-second-gray:#747474;
+
+  --color-accent: #6a5dc2;
+  --color-second-accent:#8577E1;
+
+  --small-indent: 1rem;
+}
+
+* {
+  box-sizing: border-box;
+  border: 2px solid rgba(4, 175, 4, 0.568);
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.frame {
+  width: 100%;
+  padding: 0 5.56%;
+}
+.simpleTxt {
+  font-family: "Play";
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  text-align: left;
+}
+
+.btn {
+  cursor: pointer;
+
+  padding: 1rem 3rem;
+  color: var(--color-white);
+  background-color: var(--color-gray);
+  border-radius: 2rem;
+
+  font-family: "Play";
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  transition: background-color 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.btn:hover{
+  background-color: var(--color-second-gray);
+}
+
+.btn--active {
+  background-color: var(--color-accent);
+}
+.btn--active:hover{
+  background-color: var(--color-second-accent);
+}
+.btnSmall {
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+}
