@@ -1,16 +1,30 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./card.module.css";
+import { MiniInfo } from "../../../components/miniInfo/MiniInfo";
+import { Link } from "react-router-dom";
 
-export function SimpleCard(movie:any) {
-    // ? посмотреть не в ночь по mov.mov
+interface SimpleCardProps {
+  movie: any;
+  num?: number;
+}
+
+export function SimpleCard({ movie, num }: SimpleCardProps) {
   const card = (
-    <a
-      className={styles.sCard}
-      href={`/movie/${movie.movie.id}`} 
-      style={{
-        backgroundImage: `url(${movie.movie.posterUrl})`,
-      }}
-    ></a>
+    <div className={styles.cardContainer}>
+      <Link 
+        className={styles.sCard}
+        to={`/movie/${movie.id}`}
+        style={{
+          backgroundImage: `url(${movie.posterUrl})`,
+        }}
+      >
+        <div className={styles.cardDescription}>
+          <h3 className={`simpleTxt ${styles.cardTitle} `}> {movie.title}</h3>
+          <MiniInfo movie={movie}></MiniInfo>
+        </div>
+      </Link >
+      {num && <p className={`${styles.cardNum} simpleTxt`}> {num}</p>}
+    </div>
   );
   return card;
 }

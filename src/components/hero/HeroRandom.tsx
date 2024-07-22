@@ -1,52 +1,36 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./hero.module.css";
-import { getMovieById, getRandomMovie } from "../../api/filmApi";
+import { getRandomMovie } from "../../api/filmApi";
 import { getFavoritesFilms, setFavoritesFilms } from "../../api/authApi";
 import { MiniInfo } from "../miniInfo/MiniInfo";
-import { useParams } from "react-router-dom";
 import { BackImageBlock } from "./backImageBlock/BackImageBlock";
 import { MainFilmInfo } from "./mainFilmInfo/MainFilmInfo";
+import { Link } from "react-router-dom";
+import { Movie } from "./Hero";
 
-export interface Movie {
-  id: number;
-  title: string;
-  originalTitle: string;
-  posterUrl: string;
-  plot: string;
-  runtime: number;
-  tmdbRating: number;
-  trailerUrl: string;
-  releaseYear: number;
-  genres: Array<string>;
 
-  awardsSummary: string | null;
-  budget: number | null;
-  cast: Array<string>;
-  director: string | null;
-  language: string;
-  languages: Array<string>;
-  production: string | null;
-  status: string;
-}
 
-export function Hero({ movie }: { movie: Movie }) {
-  
-
-  
-  const film = movie
+export function HeroRandom() {
+  const [randomFilm, setRandomFilm] = useState<Movie | null>(null);
   const [imageWidth, setImageWidth] = useState(window.innerWidth * 0.4);
-
   const backRef = useRef<HTMLDivElement>(null);
 
+  async function handleResetFilm() {
+    const film = await getRandomMovie();
+    setRandomFilm(film);
+    return film;
+  }
   async function handleAddFavorite() {
-    if (!film) return;
-    setFavoritesFilms(film.id);
+    if (!randomFilm) return;
+    setFavoritesFilms(randomFilm.id);
   }
 
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        if (film?.posterUrl) {
+        const film = await handleResetFilm();
+
+        if (film.posterUrl) {
           const img = new Image();
           img.src = film.posterUrl;
           img.onload = () => {
@@ -70,19 +54,23 @@ export function Hero({ movie }: { movie: Movie }) {
 
   const heroBlock = (
     <div className={styles.hero}>
-      <BackImageBlock ref={backRef} film={film as Movie}></BackImageBlock>
+      <BackImageBlock ref={backRef} film={randomFilm as Movie}></BackImageBlock>
       <div className="frame">
-        {film && (
+        {randomFilm && (
           <div className={styles.content}>
-            <MiniInfo movie={film}></MiniInfo>
-            <MainFilmInfo movie={film}></MainFilmInfo>
+            <MiniInfo movie={randomFilm}></MiniInfo>
+            <MainFilmInfo movie={randomFilm}></MainFilmInfo>
 
             <ul className={styles.btnBlock}>
-              {/* реализовать + стилизация кнопок глобальна */}
               <button className={`btn btn--active   ${styles.filmButton}`}>
                 Трейлер
               </button>
-
+              <Link
+                to={`/movie/${randomFilm.id}`}
+                className={`btn    ${styles.filmButton}`}
+              >
+                О Фильме
+              </Link>
               <button
                 className={`btn  btnSmall  ${styles.filmButton}`}
                 onClick={handleAddFavorite}
@@ -100,6 +88,23 @@ export function Hero({ movie }: { movie: Movie }) {
                   />
                 </svg>
               </button>
+              <button
+                className={`btn btnSmall  ${styles.filmButton}`}
+                onClick={handleResetFilm}
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10 2C12.7486 2 15.1749 3.38626 16.6156 5.5H14V7.5H20V1.5H18V3.99936C16.1762 1.57166 13.2724 0 10 0C4.47715 0 0 4.47715 0 10H2C2 5.58172 5.58172 2 10 2ZM18 10C18 14.4183 14.4183 18 10 18C7.25144 18 4.82508 16.6137 3.38443 14.5H6V12.5H0V18.5H2V16.0006C3.82381 18.4283 6.72764 20 10 20C15.5228 20 20 15.5228 20 10H18Z"
+                    fill="white"
+                  />
+                </svg>
+              </button>
             </ul>
           </div>
         )}
@@ -109,3 +114,5 @@ export function Hero({ movie }: { movie: Movie }) {
 
   return heroBlock;
 }
+export { Movie };
+

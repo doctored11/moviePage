@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import styles from "./headerNavigation.module.css";
+import { Link } from "react-router-dom";
 
 export function HeaderNavigation() {
   const navBlock = (
     <nav className={styles.navSection}>
       <ul className={styles.navigationUl}>
         <li className={`${styles.navItem}  ${styles.linkNavugation} `}>
-          <a href="#" className={`${styles.navLink} simpleTxt `}>
+          <Link to="/" className={`${styles.navLink} simpleTxt `}>
             Главная
-          </a>
+          </Link>
         </li>
         <li className={`${styles.navItem} ${styles.linkNavugation} `}>
           <a href="#" className={`${styles.navLink} simpleTxt `}>

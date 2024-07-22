@@ -1,0 +1,25 @@
+.stats {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  margin-bottom: var(--small-indent);
+}
+
+.accentPlate {
+  padding: 4px 12px 4px 12px;
+  border-radius: 2rem;
+  background-color: #308e21;
+  color: var(--color-white);
+}
+
+.statisticValue {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: left;
+}
+.statisticValue:not(:last-child) {
+  margin-right: var(--small-indent);
+}

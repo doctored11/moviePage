@@ -1,0 +1,14 @@
+.title {
+  margin-bottom: var(--small-indent);
+  color: var(--color-white);
+
+  font-family: "Play";
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  text-align: left;
+}
+
+.description {
+  margin-bottom: calc(3.8 * var(--small-indent));
+}

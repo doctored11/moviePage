@@ -19,7 +19,8 @@ module.exports = {
     entry: path.resolve(__dirname, 'src/index.tsx'),
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'index.js'
+        filename: 'index.js',
+        publicPath: '/'
 
     },
     module: {
@@ -80,7 +81,7 @@ module.exports = {
         port: 3003,
         open: true,
         hot: IS_DEV,
-        historyApiFallback: true
+        historyApiFallback: true,
     }
 
 };

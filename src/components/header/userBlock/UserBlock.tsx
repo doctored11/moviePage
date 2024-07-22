@@ -27,7 +27,7 @@ export function UserBlock() {
       {user && <button className={`simpleTxt ${styles.logBtn} `} onClick={logoutUser}>{user}</button>}
       {!user && (
         <>
-          <button className={`simpleTxt ${styles.logBtn}`} onClick={openModal}>Open Modal</button>
+          <button className={`simpleTxt ${styles.logBtn}`} onClick={openModal}>Войти</button>
           <Modal isOpen={isModalOpen} onClose={closeModal}>
             <h2>Modal Title</h2>
             <p>This is the modal content.</p>
