@@ -5,13 +5,14 @@ import { Modal } from "../../components/modal/Modal";
 import { HeaderNavigation } from "./headerNavigation/HeaderNavigation";
 import { UserBlock } from "./userBlock/UserBlock";
 import { Link } from "react-router-dom";
+import { Logo } from "../../components/logo/Logo";
 
 export function Header() {
   useEffect(() => console.log("__header"), []);
   return (
     <header className={styles.header}>
       <div className={` frame ${styles.headerFrame} `}>
-        <Link to = "/" className={styles.logo}>CinemaGuide</Link>
+        <Logo></Logo>
         <HeaderNavigation></HeaderNavigation>
         <UserBlock></UserBlock>{" "}
       </div>

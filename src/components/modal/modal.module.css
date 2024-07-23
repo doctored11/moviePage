@@ -1,36 +1,116 @@
-*{
-    /* border: 2px solid rgba(4, 175, 4, 0.568); */
+* {
+  /* border: 2px solid rgba(4, 175, 4, 0.568); */
 }
 
 .modalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 21;
-  }
-  
-  .modalContent {
-    background: white;
-    padding: 20px;
-    border-radius: 4px;
-    width: 300px;
-    max-width: 100%;
-    position: relative;
-  }
-  
-  .closeButton {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 21;
+}
+
+.modalContent {
+  background: white;
+  padding: 64px 40px;
+  border-radius: var(--border-rad);
+  min-width: 300px;
+  max-width: 450px;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.input {
+  border: 1px solid #00000040;
+  padding: 16px 16px 16px 46px;
+  color: #000000;
+
+  border-radius: 8px;
+  margin-bottom: 12px;
+  min-width: 20vw;
+
+  font-family: "Play";
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 20px;
+  transition: background-color 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.input::placeholder {
+  color: #00000040;
+}
+.input:last-of-type {
+  margin-bottom: 22px;
+}
+.mainBtn {
+  margin-bottom: var(--small-indent);
+}
+.mainBtn:disabled{
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+.secondBtn {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  border: none;
+
+  font-family: "Play";
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  transition: background-color 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.modalContent > a {
+  margin-bottom: calc(2 * var(--small-indent));
+}
+
+.closeButton {
+  padding: 12px;
+  display: flex;
+  border-radius: var(--border-rad);
+  background-color: var(--color-white);
+  position: absolute;
+  top: 0px;
+  right: -20%;
+
+  align-items: center;
+  justify-content: center;
+}
+.closeButton:hover > svg {
+  transform: rotate(90deg);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.error {
+  color: #ff7575;
+  font-size: 12px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  padding-top: 5px;
+  padding-left: 10px;
+
+  display: block;
+  width: 100%;
+}
+.errorInput {
+  border: 2px solid #ff7575;
+}
