@@ -4,6 +4,9 @@ import { apiRequest } from './api';
 export const getMoviesByCount = async (count = 50) => {
     return apiRequest(`/movie?count=${count}`);
 };
+export const getMoviesByGenry = async (genre="comedy") => {
+    return apiRequest(`/movie?genre=${genre}`);
+};
 
 export const getTop10 = async () => {
     return apiRequest('/movie/top10');

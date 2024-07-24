@@ -9,6 +9,7 @@ import "./styles/global.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { MoviePage } from "./pages/moviePage/MoviePage";
 import { createRoot } from "react-dom/client";
+import { CategoryPage } from "./pages/categoryPage/CategoryPage";
 
 getMoviesByCount(22).then(console.log);
 
@@ -21,6 +22,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<MainPage></MainPage>} />
         <Route path="/movie/:id" element={<MoviePage />} />
+        <Route path="/categories" element={<CategoryPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -3,7 +3,7 @@ import styles from "./cardList.module.css";
 import { SimpleCard } from "./card/SimpleCard";
 import { getTop10 } from "../../api/filmApi";
 
-// !типы
+
 export function CardList() {
   const [cardList, setCardList] = useState([]);
 
@@ -20,11 +20,11 @@ export function CardList() {
   //наверное передаваить массив - для переиспользования компонента
   return (
     <>
-      <div className={styles.cardList}>
+      <ul className={styles.cardList}>
         {cardList.map((card, index) => (
           <SimpleCard movie={card} num={index+1} />
         ))}
-      </div>{" "}
+      </ul>{" "}
     </>
   );
 }

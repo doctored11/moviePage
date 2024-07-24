@@ -12,9 +12,9 @@ export function HeaderNavigation() {
           </Link>
         </li>
         <li className={`${styles.navItem} ${styles.linkNavugation} `}>
-          <a href="#" className={`${styles.navLink} simpleTxt `}>
+          <Link to="/categories" className={`${styles.navLink} simpleTxt `}>
             Жанры
-          </a>
+          </Link>
         </li>
         <li className={`${styles.navItem} `}>
           <form className={styles.form}>
