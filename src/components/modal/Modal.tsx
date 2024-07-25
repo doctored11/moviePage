@@ -68,15 +68,20 @@ export function Modal({ isOpen, onClose }: ModalProps) {
   };
 
   const handleLogin = async () => {
+    console.log("login")
     const formErrors = validateForm(email, password, "", "", "", isRegister);
     setErrors(formErrors);
-    if (Object.keys(formErrors).length > 0) return;
+    console.log(formErrors)
+    if (Object.values(formErrors).some(error => error !== "" && error !== null)) {
+      return;
+    }
     try {
-     
+      console.log("login1")
       await loginUser({ email, password });
       alert("Вход успешен!");
       onClose();
     } catch (error) {
+      console.log("login2")
       alert("Ошибка входа: " + (error as Error).message);
     }
   };

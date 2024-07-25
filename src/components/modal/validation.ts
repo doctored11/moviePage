@@ -33,11 +33,11 @@ export const validateEmail = (email: string): string | null => {
   };
   
   
-  export const validateForm = (email: string, password: string, secondPassword: string, name: string, surname: string, isRegister: boolean): any => {
+  export const validateForm = (email: string, password: string, secondPassword?: string, name?: string, surname?: string, isRegister?: boolean): any => {
     const errors: any = {};
     errors.email = validateEmail(email);
     errors.password = validatePassword(password);
-    if (isRegister) {
+    if (isRegister && secondPassword&&name && surname) {
       errors.secondPassword = validateSecondPassword(password, secondPassword);
       errors.name = validateName(name);
       errors.surname = validateSurname(surname);

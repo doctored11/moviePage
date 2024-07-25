@@ -1,6 +1,10 @@
 import { Header } from "./components/header/Header";
 
-import { getMoviesByCount, getRandomMovie } from "./api/filmApi";
+import {
+  getMoviesByCount,
+  getMoviesPage,
+  getRandomMovie,
+} from "./api/filmApi";
 import React from "react";
 
 import { MainPage } from "./pages/main/MainPage";
@@ -10,8 +14,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { MoviePage } from "./pages/moviePage/MoviePage";
 import { createRoot } from "react-dom/client";
 import { CategoryPage } from "./pages/categoryPage/CategoryPage";
+import { GenreFilmPage } from "./pages/genreFilmsPage/GenreFilmPage";
 
 getMoviesByCount(44).then(console.log);
+
 
 // regUser("почта", "нагоршкесидиткороль", "я", "янович").then((data) =>
 //   console.log(data)
@@ -23,6 +29,7 @@ const App = () => {
         <Route path="/" element={<MainPage></MainPage>} />
         <Route path="/movie/:id" element={<MoviePage />} />
         <Route path="/categories" element={<CategoryPage />} />
+        <Route path="/:category" element={<GenreFilmPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -29,6 +29,12 @@ export const getMoviesByGenry = async (genre = "comedy") => {
   updateLocalFilms(movies);
   return movies;
 };
+export const getMoviesPage = async (genre = "comedy", count = 10, pageNum =1) => {
+  // вернет пустой массив если страницы нет
+  const movies = await apiRequest(`/movie?genre=${genre}&&count=${count}&&page=${pageNum}`);
+  updateLocalFilms(movies);
+  return movies;
+};
 
 export const getTop10 = async () => {
     const movies = await apiRequest('/movie/top10');

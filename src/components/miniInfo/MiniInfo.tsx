@@ -7,7 +7,7 @@ interface MiniInfoProps {
 }
 
 export function MiniInfo({ movie }: MiniInfoProps) {
-  console.log(12, movie);
+  // console.log(12, movie);
   return (
     <ul className={styles.stats}>
       <p className={`${styles.statisticValue} simpleTxt ${styles.accentPlate}`}>
