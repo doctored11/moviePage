@@ -4,7 +4,7 @@ import { getGenres, getMoviesByGenry } from "../../api/filmApi";
 import { GenreCard } from "../../components/cardList/card/GenreCard";
 import { Movie } from "../../components/hero/Hero";
 
-// долго - мб искать в подгружженных сначала по категории а тех что нет запрашивать, или сначала с заглушкой показать
+// долго - мб искать в подгружженных сначала по категории а тех что нет запрашивать, или сначала с заглушкой показать.
 export function GenreList() {
   const [categories, setCategories] = useState([]);
   const [moviesByGenre, setMoviesByGenre] = useState({});
@@ -18,6 +18,7 @@ export function GenreList() {
 
       const moviesData: { [key: string]: Movie | null } = {};
       for (const genry of categories) {
+        //тут сначала надо проверить первую строку в массиве  genry у фильмов из LS
         const randomMovie: Movie = await getRandomGenryMovie(genry);
         moviesData[genry] = randomMovie;
       }
@@ -27,9 +28,28 @@ export function GenreList() {
   }, []);
 
   async function getRandomGenryMovie(genry: string) {
-    const categories = await getMoviesByGenry(genry);
-    const max = categories.length - 1;
-    return categories[Math.floor(Math.random() * max)];
+    let films = localStorage.getItem("localFilms") || "{}";
+   
+
+    const localFilms: Array<Movie> = JSON.parse(films);
+    
+    let genreFilms: Array<Movie> = [];
+    if (localFilms.length > 0) {
+      genreFilms = localFilms.filter(
+        (film) => film.genres[0] == genry && film.posterUrl != null
+      );
+    }
+
+   
+   
+    if (genreFilms.length == 0 || !genreFilms) {
+
+      console.log("Запрос на ", genry);
+      genreFilms = await getMoviesByGenry(genry);
+    }
+    const max = genreFilms.length - 1;
+
+    return genreFilms[Math.floor(Math.random() * max)];
   }
 
   return (
