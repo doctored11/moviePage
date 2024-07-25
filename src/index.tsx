@@ -11,7 +11,7 @@ import { MoviePage } from "./pages/moviePage/MoviePage";
 import { createRoot } from "react-dom/client";
 import { CategoryPage } from "./pages/categoryPage/CategoryPage";
 
-// getMoviesByCount(22).then(console.log);
+getMoviesByCount(44).then(console.log);
 
 // regUser("почта", "нагоршкесидиткороль", "я", "янович").then((data) =>
 //   console.log(data)

@@ -4,7 +4,6 @@ import { getGenres, getMoviesByGenry } from "../../api/filmApi";
 import { GenreCard } from "../../components/cardList/card/GenreCard";
 import { Movie } from "../../components/hero/Hero";
 
-// долго - мб искать в подгружженных сначала по категории а тех что нет запрашивать, или сначала с заглушкой показать.
 export function GenreList() {
   const [categories, setCategories] = useState([]);
   const [moviesByGenre, setMoviesByGenre] = useState({});
@@ -18,7 +17,6 @@ export function GenreList() {
 
       const moviesData: { [key: string]: Movie | null } = {};
       for (const genry of categories) {
-        //тут сначала надо проверить первую строку в массиве  genry у фильмов из LS
         const randomMovie: Movie = await getRandomGenryMovie(genry);
         moviesData[genry] = randomMovie;
       }
@@ -29,27 +27,40 @@ export function GenreList() {
 
   async function getRandomGenryMovie(genry: string) {
     let films = localStorage.getItem("localFilms") || "{}";
-   
 
     const localFilms: Array<Movie> = JSON.parse(films);
-    
+
     let genreFilms: Array<Movie> = [];
-    if (localFilms.length > 0) {
-      genreFilms = localFilms.filter(
-        (film) => film.genres[0] == genry && film.posterUrl != null
-      );
+  
+
+    // оказывается на первой позиции ни в одном фильме не стоит стендап - поэтому мини костыль
+    const localGenre = genry == "stand-up" ? "comedy" : genry;
+
+    let genreFilm;
+    let matchCount = 0;
+    const randomMovieFaceCount = 8;
+
+    for (const film of localFilms) {
+      if (film.genres[0] == localGenre && film.posterUrl !== null) {
+        matchCount++;
+        if (matchCount <= randomMovieFaceCount) {
+          if (Math.random() < 1 / matchCount) {
+            genreFilm = film;
+          }
+        } else {
+          break;
+        }
+      }
     }
 
-   
-   
-    if (genreFilms.length == 0 || !genreFilms) {
-
+    if (!genreFilm) {
       console.log("Запрос на ", genry);
       genreFilms = await getMoviesByGenry(genry);
+      const max = genreFilms.length - 1;
+      genreFilm = genreFilms[Math.floor(Math.random() * max)];
     }
-    const max = genreFilms.length - 1;
 
-    return genreFilms[Math.floor(Math.random() * max)];
+    return genreFilm;
   }
 
   return (
