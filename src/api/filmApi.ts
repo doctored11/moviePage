@@ -1,7 +1,7 @@
 import { Movie } from "../components/hero/Hero";
 import { apiRequest } from "./api";
 
-function getLocalFilms() {
+export function getLocalFilms() {
   const films = localStorage.getItem("localFilms");
   return films ? JSON.parse(films) : [];
 }

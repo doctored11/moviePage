@@ -91,3 +91,7 @@ p {
   display: flex;
   align-items: center;
 }
+
+.d-none{
+  display: none;
+}
