@@ -3,7 +3,7 @@ import styles from "./card.module.css";
 import { MiniInfo } from "../../../components/miniInfo/MiniInfo";
 import { Link } from "react-router-dom";
 
-interface SimpleCardProps {
+export interface SimpleCardProps {
   movie: any;
   num?: number;
 }

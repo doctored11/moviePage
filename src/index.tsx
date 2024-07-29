@@ -15,6 +15,7 @@ import { MoviePage } from "./pages/moviePage/MoviePage";
 import { createRoot } from "react-dom/client";
 import { CategoryPage } from "./pages/categoryPage/CategoryPage";
 import { GenreFilmPage } from "./pages/genreFilmsPage/GenreFilmPage";
+import { PersonPage } from "./pages/personPage/PersonPage";
 
 getMoviesByCount(44).then(console.log);
 
@@ -30,6 +31,7 @@ const App = () => {
         <Route path="/movie/:id" element={<MoviePage />} />
         <Route path="/categories" element={<CategoryPage />} />
         <Route path="/:category" element={<GenreFilmPage />} />
+        <Route path="/person" element={<PersonPage />} />
       </Routes>
     </BrowserRouter>
   );

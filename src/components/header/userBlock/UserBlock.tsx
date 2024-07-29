@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./userBlock.module.css";
 import { getProfile, logoutUser } from "../../../api/authApi";
 import { Modal } from "../../modal/Modal";
+import { Link } from "react-router-dom";
 
 export function UserBlock() {
   const [user, setUser] = useState(null);
@@ -24,7 +25,7 @@ export function UserBlock() {
   }, [isModalOpen]);
   const usBlock = (
     <>
-      {user && <button className={`simpleTxt ${styles.logBtn} `} onClick={logoutUser}>{user}</button>}
+      {user && <Link to="/person" className={`simpleTxt ${styles.logBtn} `} >{user}</Link>}
       {!user && (
         <>
           <button className={`simpleTxt ${styles.logBtn}`} onClick={openModal}>Войти</button>

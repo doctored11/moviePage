@@ -95,3 +95,43 @@
   text-decoration: none;
   color: var(--color-accent);
 }
+
+.favCardContainer{
+  position: relative;
+  min-width: 200px;
+  min-height: 300px;
+  display: inline-block;
+  
+}
+.favCardContainer > div{
+  width: 100%;
+}
+.favCardContainer:hover > .deleteButton {
+  display: flex;
+
+}
+.favCardContainer:hover  a {
+  border: 2px solid var(--color-white);
+
+}
+
+.deleteButton {
+  padding: 12px;
+  display: none;
+  border-radius: var(--border-rad);
+  background-color: var(--color-white);
+
+  position: absolute;
+  top: -5%;
+  right: -5%;
+  border: none;
+  z-index: 2;
+  cursor: pointer;
+
+  align-items: center;
+  justify-content: center;
+}
+.deleteButton:hover > svg {
+  transform: rotate(90deg);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}

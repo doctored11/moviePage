@@ -26,7 +26,7 @@ export function MainPage() {
       <HeroRandom></HeroRandom>
 
       <CategoryBlock header="топ фильмов">
-        <CardList cardList={cardList}></CardList>
+        <CardList cardList={cardList} isIterable={true}></CardList>
       </CategoryBlock>
       <footer>тут будет футер когда то</footer>
     </>

@@ -48,6 +48,15 @@ function addFavoriteFilms(newFilms: Array<Movie>) {
   localStorage.setItem("Favorite", JSON.stringify(updatedFilms));
 }
 
+ function deleteFavoriteLocalFilm(id:number){
+  const lf: Movie[] = getLocalFavoriteFilms();
+  console.log("2");
+  console.log(lf);
+  const newFilmArr = lf.filter((film) => film.id != id);
+  console.log(newFilmArr);
+  localStorage.setItem("Favorite", JSON.stringify(newFilmArr));
+
+}
 export const getProfile = async (): Promise<any> => {
   return apiRequest("/profile");
 };
@@ -125,12 +134,7 @@ export async function setFavoritesFilms(id: number) {
 export async function deleteFavoritesFilms(id: number) {
   console.log("1", id);
 
-  const lf: Movie[] = getLocalFavoriteFilms();
-  console.log("2");
-  console.log(lf);
-  const newFilmArr = lf.filter((film) => film.id != id);
-  console.log(newFilmArr);
-  localStorage.setItem("Favorite", JSON.stringify(newFilmArr));
+  deleteFavoriteLocalFilm(id)
   console.log("3");
 
   try {
