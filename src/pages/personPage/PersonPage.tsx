@@ -49,9 +49,24 @@ export function PersonPage() {
 
       <CategoryBlock header="Мой аккаунт">
         <>
-          <div>
-            <button onClick={() => setMode("films")}> фильмы</button>
-            <button onClick={() => setMode("profile")}>аккаунт</button>
+          <div className={styles.btnBlock}>
+            <button
+              onClick={() => setMode("films")}
+              className={`${styles.selectBtn} simpleTxt ${
+                mode == "films" ? styles.selectBtnActive : null
+              }  `}
+            >
+              {" "}
+              фильмы
+            </button>
+            <button
+              onClick={() => setMode("profile")}
+              className={`${styles.selectBtn} simpleTxt ${
+                mode == "profile" ? styles.selectBtnActive : null
+              }  `}
+            >
+              аккаунт
+            </button>
           </div>
           {mode == "films" && (
             <CardList
