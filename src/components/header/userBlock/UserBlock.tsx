@@ -17,24 +17,33 @@ export function UserBlock() {
         const us = await getProfile();
         setUser(us.name);
       } catch (error) {
+        setUser(null)
         console.error(error);
       }
     };
 
     fetchUserProfile();
   }, [isModalOpen]);
+
+
+
   const usBlock = (
     <>
-      {user && <Link to="/person" className={`simpleTxt ${styles.logBtn} `} >{user}</Link>}
+      {user && (
+        <Link to="/person" className={`simpleTxt ${styles.logBtn} `}>
+          {user}
+        </Link>
+      )}
       {!user && (
         <>
-          <button className={`simpleTxt ${styles.logBtn}`} onClick={openModal}>Войти</button>
-          <Modal isOpen={isModalOpen} onClose={closeModal}>
-          </Modal>
+          <button className={`simpleTxt ${styles.logBtn}`} onClick={openModal}>
+            Войти
+          </button>
+          <Modal isOpen={isModalOpen} onClose={closeModal}></Modal>
         </>
       )}
     </>
   );
 
-  return usBlock
+  return usBlock;
 }

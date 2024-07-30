@@ -14,7 +14,7 @@ export function Header() {
       <div className={` frame ${styles.headerFrame} `}>
         <Logo></Logo>
         <HeaderNavigation></HeaderNavigation>
-        <UserBlock></UserBlock>{" "}
+        <UserBlock></UserBlock>
       </div>
     </header>
   );
