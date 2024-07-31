@@ -1,0 +1,12 @@
+.ddRoot {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  height: max-content;
+  /* min-height: 60px; */
+
+  top: 60px;
+  width: 100%;
+  background-color: var(--color-gray);
+  z-index: 13;
+}

@@ -52,6 +52,11 @@ export const getMovieById = async (id = 1) => {
     return movie;
 };
 
+export const getMovieByTitle = async (title:string) => {
+  const movie = await apiRequest(`/movie?title=${title}`);
+  updateLocalFilms([movie]);
+  return movie;
+};
 export const getRandomMovie = async () => {
     const movie = await apiRequest('/movie/random');
     updateLocalFilms([movie]);

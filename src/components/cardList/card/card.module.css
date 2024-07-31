@@ -57,7 +57,7 @@
   text-align: center;
 
   background: rgba(0, 0, 0);
-  border: 8px solid rgba(0, 0, 0);;
+  border: 8px solid rgba(0, 0, 0);
   color: var(--color-white);
 }
 
@@ -96,23 +96,20 @@
   color: var(--color-accent);
 }
 
-.favCardContainer{
+.favCardContainer {
   position: relative;
   min-width: 200px;
   min-height: 300px;
   display: inline-block;
-  
 }
-.favCardContainer > div{
+.favCardContainer > div {
   width: 100%;
 }
 .favCardContainer:hover > .deleteButton {
   display: flex;
-
 }
-.favCardContainer:hover  a {
+.favCardContainer:hover a {
   border: 2px solid var(--color-white);
-
 }
 
 .deleteButton {
@@ -134,4 +131,44 @@
 .deleteButton:hover > svg {
   transform: rotate(90deg);
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.smallCardContainer {
+  background-color: var(--color-gray);
+  
+}
+.smallCard {
+  width: 100%;
+  display: flex;
+  position: relative;
+  padding: 20px 15px;
+}
+.cardImg {
+  width: 20%;
+  min-width: 40px;
+  background-size: cover;
+  margin-right: var(--small-indent);
+}
+.cardLandscapeContent {
+  display: flex;
+  flex: 2;
+  align-items: start;
+  flex-direction: column-reverse;
+}
+.cardLandscapeContent * {
+  color: var(--color-white);
+  text-decoration: none;
+  text-decoration-style: none;
+}
+.cardLandscapeContent p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 16px;
+}
+.smallCardTitle {
+  color: var(--color-white);
+  text-align: start;
+}
+a {
+  text-decoration: none;
 }
