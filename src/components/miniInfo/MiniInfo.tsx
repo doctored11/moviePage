@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./miniInfo.module.css";
-import { Movie } from "../../components/hero/Hero"
+import { Movie } from "../../components/hero/Hero";
+import { getValidDurating, getValidRating } from "./miniIfoValidation";
 
 interface MiniInfoProps {
   movie: Movie;
@@ -10,7 +11,11 @@ export function MiniInfo({ movie }: MiniInfoProps) {
   // console.log(12, movie);
   return (
     <ul className={styles.stats}>
-      <p className={`${styles.statisticValue} simpleTxt ${styles.accentPlate}`}>
+      <p
+        className={`${styles.statisticValue} simpleTxt ${styles.accentPlate} ${
+          styles[getValidRating(movie.tmdbRating).colorRating]
+        }`}
+      >
         <svg
           width="16"
           height="15"
@@ -24,7 +29,7 @@ export function MiniInfo({ movie }: MiniInfoProps) {
             fill="white"
           />
         </svg>
-        {movie.tmdbRating}
+        {getValidRating(movie.tmdbRating).validRating}
       </p>
       <p
         className={`${styles.statisticValue} simpleTxt ${styles.infoIndicator}`}
@@ -41,7 +46,7 @@ export function MiniInfo({ movie }: MiniInfoProps) {
       <p
         className={`${styles.statisticValue} simpleTxt ${styles.infoIndicator}`}
       >
-        {movie.runtime}
+        {getValidDurating(movie.runtime)}
       </p>
     </ul>
   );

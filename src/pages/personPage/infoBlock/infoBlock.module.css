@@ -38,3 +38,8 @@
     border-radius: var(--border-rad);
     background-color: #ffffff50;
 }
+.infoList{
+  margin: 0;
+  padding: 0;
+  margin-bottom: var(--big-indent);
+}

@@ -23,3 +23,16 @@
 .statisticValue:not(:last-child) {
   margin-right: var(--small-indent);
 }
+
+.green{
+background-color: #308e21;
+}
+.gray{
+background-color: #777777;
+}
+.yellow{
+  background-color: #8e8921;
+}
+.red{
+  background-color: #C82020;
+}
