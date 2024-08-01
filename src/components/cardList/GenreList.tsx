@@ -29,7 +29,6 @@ export function GenreList() {
     let films = localStorage.getItem("localFilms") || "{}";
 
     const localFilms: Array<Movie> = JSON.parse(films);
-
     let genreFilms: Array<Movie> = [];
   
 
@@ -41,6 +40,8 @@ export function GenreList() {
     const randomMovieFaceCount = 8;
 
     for (const film of localFilms) {
+     
+      if (!film || !film.genres) continue
       if (film.genres[0] == localGenre && film.posterUrl !== null) {
         matchCount++;
         if (matchCount <= randomMovieFaceCount) {

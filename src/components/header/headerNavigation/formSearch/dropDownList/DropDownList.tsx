@@ -6,16 +6,21 @@ import { SmallCard } from "../../../../../components/cardList/card/SmallCard";
 export function DropDownList({
   movies,
   click,
+  handleToClose,
 }: {
   movies: Movie[];
-  click: ()=>void;
+  click: () => void;
+  handleToClose: () => void;
 }) {
   const block = (
-    <div className={styles.ddRoot} onClick={click}>
-      {movies.map((movie) => {
-        return SmallCard({ movie });
-      })}
-    </div>
+    <>
+      <div className={styles.outClickBlock} onClick={handleToClose}></div>
+      <div className={styles.ddRoot} onClick={click}>
+        {movies.slice(0, 5).map((movie) => {
+          return SmallCard({ movie });
+        })}
+      </div>
+    </>
   );
 
   return block;

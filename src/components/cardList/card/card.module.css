@@ -141,6 +141,7 @@
   width: 100%;
   display: flex;
   position: relative;
+  border: 1px solid var(--color-gray);
   padding: 20px 15px;
 }
 .cardImg {
@@ -171,4 +172,9 @@
 }
 a {
   text-decoration: none;
+}
+
+.smallCard:hover , .smallCard:focus{
+  border: 1px solid var(--color-second-gray);
+  border-radius: 12px;
 }

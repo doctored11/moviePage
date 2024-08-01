@@ -18,7 +18,7 @@ export function FormSearch() {
       if (searchQuery) {
         const res = await getMovieByTitle(searchQuery);
         console.log(res);
-        setResults(res); //todo отобразить списочек
+        setResults(res); 
       }
     }, 600),
     []
@@ -41,7 +41,7 @@ export function FormSearch() {
 
   function handleOnChange(event: React.ChangeEvent<HTMLInputElement>) {
     const value = event.target.value;
-    setQuery(value);
+    setQuery(value.trim());
   }
 
   const formBlock = (
@@ -66,7 +66,7 @@ export function FormSearch() {
           />
         </svg>
       </button>
-      {results && <DropDownList movies={results} click={handleClick}></DropDownList>}
+      {results.length>0 && <DropDownList movies={results} click={handleClick} handleToClose={()=>setResults([])}></DropDownList>}
     </form>
   );
   return formBlock;
