@@ -21,7 +21,6 @@ export function VideoPlayer({ link }: VideoPlayerProps) {
   const isPlaying = useRef<boolean>(false);
 
   useEffect(() => {
-    // Load YouTube IFrame API
     const tag = document.createElement("script");
     tag.src = "https://www.youtube.com/iframe_api";
     const firstScriptTag = document.getElementsByTagName("script")[0];
@@ -42,6 +41,9 @@ export function VideoPlayer({ link }: VideoPlayerProps) {
           modestbranding: 1,
           rel: 0,
           showinfo: 0,
+          iv_load_policy: 3,
+          disablekb: 1,
+          enablejsapi: 1,
         },
         events: {
           onReady: onPlayerReady,
@@ -50,6 +52,7 @@ export function VideoPlayer({ link }: VideoPlayerProps) {
       });
       //   console.log(playerInstance);
     };
+    
   }, [link]);
 
   const extractVideoId = (url: string) => {
@@ -102,7 +105,7 @@ export function VideoPlayer({ link }: VideoPlayerProps) {
 
   return (
     <div className={styles.playerContainer}>
-      <div id="youtube-player" ref={playerRef}></div>
+      <div id="youtube-player" className= {styles.youTubePlayer}ref={playerRef}></div>
       <div className={styles.controls} ref={controlsRef}>
         <span
           className={styles.playPauseBtn}

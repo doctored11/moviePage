@@ -15,7 +15,7 @@ interface ModalProps {
 export function ModalVideo({ isOpen, onClose,link }: ModalProps) {
   const modalBlock = ReactDOM.createPortal(
     <div className={styles.modalOverlay}>
-      <div className={styles.modalContent}>
+      <div className={`${styles.modalContent} ${styles.videoModalContent}`}>
         <button className={styles.closeButton} onClick={onClose}>
           <svg
             width="24"

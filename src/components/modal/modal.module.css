@@ -13,6 +13,8 @@
   justify-content: center;
   align-items: center;
   z-index: 21;
+  width: 100vw;
+
 }
 
 .modalContent {
@@ -64,7 +66,7 @@
 .mainBtn {
   margin-bottom: var(--small-indent);
 }
-.mainBtn:disabled{
+.mainBtn:disabled {
   opacity: 0.8;
   cursor: not-allowed;
 }
@@ -113,4 +115,12 @@
 }
 .errorInput {
   border: 2px solid #ff7575;
+}
+
+.videoModalContent {
+  width: 70vw;
+  max-width: 100%; 
+  height: auto; 
+  padding: 0;
+  position: relative;
 }
