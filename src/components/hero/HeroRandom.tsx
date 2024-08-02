@@ -8,16 +8,18 @@ import { MainFilmInfo } from "./mainFilmInfo/MainFilmInfo";
 import { Link } from "react-router-dom";
 import { Movie } from "./Hero";
 import { FavoriteBtn } from "./favoriteBtn/FavoriteBtn";
+import { ModalVideo } from "../../components/modal/ModalVideo";
 
 // todo кнопочки в отдельный компонент
 
-
 export function HeroRandom() {
-
-  
   const [randomFilm, setRandomFilm] = useState<Movie | null>(null);
   const [imageWidth, setImageWidth] = useState(window.innerWidth * 0.4);
   const backRef = useRef<HTMLDivElement>(null);
+
+  const [isModalOpen, setModalOpen] = useState(false);
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
 
   async function handleResetFilm() {
     const film = await getRandomMovie();
@@ -28,7 +30,7 @@ export function HeroRandom() {
     if (!randomFilm) return;
     setFavoritesFilms(randomFilm.id);
     const lovrF = await getFavoritesFilms();
-    console.log("любимые",lovrF)
+    console.log("любимые", lovrF);
   }
 
   useEffect(() => {
@@ -48,7 +50,7 @@ export function HeroRandom() {
         console.error(error);
       }
     };
-    
+
     fetchUserProfile();
     getFavoritesFilms();
   }, []);
@@ -69,7 +71,10 @@ export function HeroRandom() {
             <MainFilmInfo movie={randomFilm}></MainFilmInfo>
 
             <ul className={styles.btnBlock}>
-              <button className={`btn btn--active   ${styles.filmButton}`}>
+              <button
+                className={`btn btn--active   ${styles.filmButton}`}
+                onClick={openModal}
+              >
                 Трейлер
               </button>
               <Link
@@ -78,7 +83,7 @@ export function HeroRandom() {
               >
                 О Фильме
               </Link>
-             <FavoriteBtn film={randomFilm}></FavoriteBtn>
+              <FavoriteBtn film={randomFilm}></FavoriteBtn>
               <button
                 className={`btn btnSmall  ${styles.filmButton}`}
                 onClick={handleResetFilm}
@@ -100,10 +105,19 @@ export function HeroRandom() {
           </div>
         )}
       </div>
+      {isModalOpen && (
+        <ModalVideo
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          link={
+            randomFilm?.trailerUrl ||
+            "https://www.youtube.com/watch?v=xvFZjo5PgG0"
+          }
+        ></ModalVideo>
+      )}
     </div>
   );
 
   return heroBlock;
 }
 export { Movie };
-

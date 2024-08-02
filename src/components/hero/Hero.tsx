@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { BackImageBlock } from "./backImageBlock/BackImageBlock";
 import { MainFilmInfo } from "./mainFilmInfo/MainFilmInfo";
 import { FavoriteBtn } from "./favoriteBtn/FavoriteBtn";
+import { ModalVideo } from "../../components/modal/ModalVideo";
 
 export interface Movie {
   id: number;
@@ -33,6 +34,10 @@ export interface Movie {
 export function Hero({ movie }: { movie: Movie }) {
   const film = movie;
   const [imageWidth, setImageWidth] = useState(window.innerWidth * 0.4);
+
+  const [isModalOpen, setModalOpen] = useState(false);
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
 
   const backRef = useRef<HTMLDivElement>(null);
 
@@ -72,15 +77,21 @@ export function Hero({ movie }: { movie: Movie }) {
 
             <ul className={styles.btnBlock}>
               {/* реализовать + стилизация кнопок глобальна */}
-              <button className={`btn btn--active   ${styles.filmButton}`}>
+              <button
+                className={`btn btn--active   ${styles.filmButton}`}
+                onClick={openModal}
+              >
                 Трейлер
               </button>
 
-              <FavoriteBtn film={film as Movie}  ></FavoriteBtn>
+              <FavoriteBtn film={film as Movie}></FavoriteBtn>
             </ul>
           </div>
         )}
       </div>
+      {isModalOpen && (
+        <ModalVideo isOpen={isModalOpen} onClose={closeModal} link={film.trailerUrl}></ModalVideo>
+      )}
     </div>
   );
 

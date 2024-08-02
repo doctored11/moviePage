@@ -7,6 +7,7 @@ import { CategoryBlock } from "../../components/categoryBlock/CategoryBlock";
 import { AboutBlock } from "../../components/aboutBlock/AboutBlock";
 import { getMovieById } from "../../api/filmApi";
 
+
 export function MoviePage() {
   const { id } = useParams<{ id: string }>();
 
@@ -29,6 +30,8 @@ export function MoviePage() {
     fetchMovie();
   }, [id]);
 
+  
+
   const block = (
     <>
       <Header></Header>
@@ -38,6 +41,8 @@ export function MoviePage() {
           <AboutBlock movie={movie as Movie}></AboutBlock>
         </div>
       </CategoryBlock>
+      
+      
     </>
   );
   return block;
