@@ -24,6 +24,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   display: none;
+  z-index: 5;
 }
 
 .playPauseBtn {
@@ -38,6 +39,7 @@
   align-items: center;
   align-content: center;
   justify-content: center;
+
 
   visibility: hidden;
 }
@@ -72,7 +74,14 @@
   animation: spin 1s linear infinite;
 
 }
-
+.hoverSaver{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
 @keyframes spin {
   0% {
     transform:  translate(-50%, -50%) rotate(0deg);

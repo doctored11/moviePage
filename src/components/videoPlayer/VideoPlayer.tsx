@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./videoPlayer.module.css";
 
 declare global {
@@ -18,14 +18,15 @@ export function VideoPlayer({ link, title }: VideoPlayerProps) {
   const spinnerRef = useRef<HTMLDivElement>(null);
   const playPauseBtnRef = useRef<HTMLSpanElement>(null);
   const playerInstance = useRef<any>(null);
-  const isPlaying = useRef<boolean>(false);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  
 
   useEffect(() => {
     const loadYouTubeAPI = () => {
       return new Promise<void>((resolve) => {
         // todo
         // !промисы пригодились - todo проверить позже (не ночью)
-        // !подумать обязательно ли в window кидать 
+        // !подумать обязательно ли в window кидать
         if (window.YT && window.YT.Player) {
           resolve();
         } else {
@@ -44,7 +45,7 @@ export function VideoPlayer({ link, title }: VideoPlayerProps) {
 
     const createPlayer = () => {
       if (playerRef.current) {
-        playerRef.current.innerHTML = ""; 
+        playerRef.current.innerHTML = "";
       }
       playerInstance.current = new window.YT.Player(playerRef.current, {
         height: "100%",
@@ -100,7 +101,6 @@ export function VideoPlayer({ link, title }: VideoPlayerProps) {
   };
 
   const onPlayerStateChange = (event: any) => {
-    
     if (event.data === window.YT.PlayerState.BUFFERING && spinnerRef.current) {
       spinnerRef.current.style.display = "block";
     } else if (spinnerRef.current) {
@@ -108,7 +108,7 @@ export function VideoPlayer({ link, title }: VideoPlayerProps) {
     }
 
     if (event.data === window.YT.PlayerState.PLAYING) {
-      isPlaying.current = true;
+      setIsPlaying(true);
       if (playPauseBtnRef.current) {
         playPauseBtnRef.current.innerHTML = `
        
@@ -119,7 +119,7 @@ export function VideoPlayer({ link, title }: VideoPlayerProps) {
         `;
       }
     } else {
-      isPlaying.current = false;
+      setIsPlaying(false);
       if (playPauseBtnRef.current) {
         playPauseBtnRef.current.innerHTML = `
           
@@ -133,7 +133,7 @@ export function VideoPlayer({ link, title }: VideoPlayerProps) {
   };
 
   const togglePlayPause = () => {
-    if (isPlaying.current) {
+    if (isPlaying) {
       playerInstance.current.pauseVideo();
     } else {
       playerInstance.current.playVideo();
@@ -164,6 +164,7 @@ export function VideoPlayer({ link, title }: VideoPlayerProps) {
           </svg>
         </span>
       </div>
+      {isPlaying && <div className={styles.hoverSaver}></div>}
       <div className={styles.loadingSpinner} ref={spinnerRef}></div>
       <div className={`${styles.filmTitle} simpleTxt`}>{title}</div>
     </div>
