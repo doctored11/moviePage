@@ -9,8 +9,6 @@
   background-color: black;
 
   padding-bottom: 56%;
-
-
 }
 #youtube-player {
   position: absolute;
@@ -32,6 +30,33 @@
   font-size: 24px;
   color: white;
   cursor: pointer;
+  background-color: white;
+  border-radius: var(--border-rad);
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+
+  visibility: hidden;
+}
+
+.playerContainer:hover .playPauseBtn,
+.playerContainer:hover .filmTitle {
+  visibility: visible;
+}
+
+.filmTitle {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  padding: 24px 40px;
+  background-color: #0a0b0b50;
+  color: var(--color-white);
+  z-index: 10;
+
+  visibility: hidden;
 }
 
 .loadingSpinner {
@@ -39,21 +64,21 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: 8px solid rgba(255, 255, 255, 0.3);
+  border: 8px solid rgba(255, 255, 255, 0.858);
   border-radius: 50%;
-  border-top: 8px solid white;
+  border-top: 8px solid rgba(0, 0, 0, 0);
   width: 60px;
   height: 60px;
   animation: spin 1s linear infinite;
-  display: none;
+
 }
 
 @keyframes spin {
   0% {
-    transform: rotate(0deg);
+    transform:  translate(-50%, -50%) rotate(0deg);
   }
   100% {
-    transform: rotate(360deg);
+    transform:  translate(-50%, -50%) rotate(360deg);
   }
 }
 

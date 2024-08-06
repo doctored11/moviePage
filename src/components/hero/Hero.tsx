@@ -90,7 +90,7 @@ export function Hero({ movie }: { movie: Movie }) {
         )}
       </div>
       {isModalOpen && (
-        <ModalVideo isOpen={isModalOpen} onClose={closeModal} link={film.trailerUrl}></ModalVideo>
+        <ModalVideo isOpen={isModalOpen} onClose={closeModal} link={film.trailerUrl} title={film.title}></ModalVideo>
       )}
     </div>
   );

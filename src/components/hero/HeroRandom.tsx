@@ -113,6 +113,7 @@ export function HeroRandom() {
             randomFilm?.trailerUrl ||
             "https://www.youtube.com/watch?v=xvFZjo5PgG0"
           }
+          title={randomFilm?.title||"Фильм"}
         ></ModalVideo>
       )}
     </div>

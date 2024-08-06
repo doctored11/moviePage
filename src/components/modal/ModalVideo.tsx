@@ -10,9 +10,12 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   link:string;
+  title:string;
 }
 
-export function ModalVideo({ isOpen, onClose,link }: ModalProps) {
+export function ModalVideo({ isOpen, onClose,link,title}: ModalProps) {
+  if (!isOpen) return null;
+  
   const modalBlock = ReactDOM.createPortal(
     <div className={styles.modalOverlay}>
       <div className={`${styles.modalContent} ${styles.videoModalContent}`}>
@@ -30,7 +33,7 @@ export function ModalVideo({ isOpen, onClose,link }: ModalProps) {
             />
           </svg>
         </button>
-        <VideoPlayer link={link}></VideoPlayer>
+        <VideoPlayer link={link} title={title} key={link}></VideoPlayer>
       </div>
     </div>,
     document.getElementById("modal") as Element

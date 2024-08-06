@@ -119,8 +119,9 @@
 
 .videoModalContent {
   width: 70vw;
+  color:var(--color-white);
   max-width: 100%; 
-  height: auto; 
+  height: auto;   
   padding: 0;
   position: relative;
 }
