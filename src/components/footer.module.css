@@ -1,0 +1,51 @@
+.footerFrame {
+  display: flex;
+  justify-content: space-between;
+}
+.footerSection {
+  padding-top: var(--big-indent);
+  padding-bottom: var(--big-indent);
+  background-color: var(--color-black);
+}
+.description {
+  font-family: "Play";
+  color: var(--color-white);
+
+  font-weight: 700;
+
+  text-align: left;
+}
+.descriptionSmall {
+  font-family: "Play";
+  font-size: 18px;
+  font-weight: 400;
+  opacity: 70%;
+
+  display: flex;
+}
+.socialPart {
+  display: flex;
+  margin: 0;padding: 0;
+}
+.socialItem {
+  border: 2px solid var(--color-white);
+  border-radius: 9px;
+  display: block;
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.socialItem:not(:last-child){
+    margin-right: var(--small-indent);
+}
+.cLog {
+  display: flex;
+  width: 25px;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+}

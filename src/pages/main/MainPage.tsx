@@ -6,6 +6,7 @@ import { Header } from "../../components/header/Header";
 import { CardList } from "../../components/cardList/CardList";
 import { CategoryBlock } from "../../components/categoryBlock/CategoryBlock";
 import { getTop10 } from "../../api/filmApi";
+import { Footer } from "../../components/Footer";
 
 export function MainPage() {
 
@@ -28,7 +29,7 @@ export function MainPage() {
       <CategoryBlock header="топ фильмов">
         <CardList cardList={cardList} isIterable={true}></CardList>
       </CategoryBlock>
-      <footer>тут будет футер когда то</footer>
+      <Footer></Footer>
     </>
   );
 }

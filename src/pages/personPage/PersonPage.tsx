@@ -11,6 +11,7 @@ import {
 } from "../../api/authApi";
 import { InfoBlock } from "./infoBlock/InfoBlock";
 import { Link, useNavigate } from "react-router-dom";
+import { Footer } from "../../components/Footer";
 
 interface User {
   name: string;
@@ -125,6 +126,7 @@ export function PersonPage() {
           )}
         </>
       </CategoryBlock>
+      <Footer></Footer>
     </>
   );
   return block;

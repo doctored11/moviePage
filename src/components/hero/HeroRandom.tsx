@@ -10,7 +10,7 @@ import { Movie } from "./Hero";
 import { FavoriteBtn } from "./favoriteBtn/FavoriteBtn";
 import { ModalVideo } from "../../components/modal/ModalVideo";
 
-// todo кнопочки в отдельный компонент
+// todo заадаптировать от 900px примерно картинку в колонку
 
 export function HeroRandom() {
   const [randomFilm, setRandomFilm] = useState<Movie | null>(null);

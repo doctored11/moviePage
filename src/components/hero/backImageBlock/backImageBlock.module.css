@@ -42,3 +42,21 @@
     transparent 59.77%
   );
 }
+
+
+@media (max-width: 780px) {
+  .back {
+    position: block;
+    right: 0;
+    top: 0;
+  
+  
+    width: 100%;
+    max-width: 100vw;
+    min-height: 20vh;
+    height: max-content;
+  }
+}
+
+@media (max-width: 550px) {
+}

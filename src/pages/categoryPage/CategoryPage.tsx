@@ -6,6 +6,7 @@ import { Movie } from "../../components/hero/Hero";
 import { GenreList } from "../../components/cardList/GenreList";
 import { Header } from "../../components/header/Header";
 import { CategoryBlock } from "../../components/categoryBlock/CategoryBlock";
+import { Footer } from "../../components/Footer";
 export function CategoryPage() {
  
 
@@ -17,6 +18,7 @@ export function CategoryPage() {
       <CategoryBlock header="Категории">
       <GenreList></GenreList>
       </CategoryBlock>
+      <Footer></Footer>
     </>
   );
 }

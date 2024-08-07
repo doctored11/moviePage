@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./hero.module.css";
+
 import { getMovieById, getRandomMovie } from "../../api/filmApi";
 import { getFavoritesFilms, setFavoritesFilms } from "../../api/authApi";
 import { MiniInfo } from "../miniInfo/MiniInfo";
@@ -78,7 +79,7 @@ export function Hero({ movie }: { movie: Movie }) {
             <ul className={styles.btnBlock}>
               {/* реализовать + стилизация кнопок глобальна */}
               <button
-                className={`btn btn--active   ${styles.filmButton}`}
+                className={`btn btn--active   ${styles.filmButton}  ${styles.filmVideoButton}`}
                 onClick={openModal}
               >
                 Трейлер

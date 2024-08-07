@@ -12,3 +12,10 @@
   stroke: none;
   fill: var(--color-second-accent);
 }
+
+@media (max-width: 1100px) {
+  .filmButton {
+    max-height: 56px;
+  }
+ 
+}

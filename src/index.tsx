@@ -1,10 +1,6 @@
 import { Header } from "./components/header/Header";
 
-import {
-  getMoviesByCount,
-  getMoviesPage,
-  getRandomMovie,
-} from "./api/filmApi";
+import { getMoviesByCount, getMoviesPage, getRandomMovie } from "./api/filmApi";
 import React from "react";
 
 import { MainPage } from "./pages/main/MainPage";
@@ -19,10 +15,9 @@ import { PersonPage } from "./pages/personPage/PersonPage";
 
 getMoviesByCount(44).then(console.log);
 
-
 // regUser("почта", "нагоршкесидиткороль", "я", "янович").then((data) =>
 //   console.log(data)
-
+// TODO сверстать футер + сделать адаптив 720 - 2000
 const App = () => {
   return (
     <BrowserRouter>
