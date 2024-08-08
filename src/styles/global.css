@@ -22,6 +22,7 @@
   --color-second-accent: #8577e1;
 
   --small-indent: 1rem;
+  --middle-indent: 24px;
   --big-indent: 56px;
   --border-rad: 2rem;
 }
@@ -38,7 +39,7 @@ p {
   margin: 0;
   padding: 0;
 }
-body{
+body {
   background-color: var(--color-black);
 }
 .frame {
@@ -55,17 +56,15 @@ body{
   line-height: 32px;
 
   text-decoration: none;
-  
-  
 }
-
-
+.miniTxt {
+  font-size: 18px;
+}
 .boldTxt {
   font-family: "Play";
   font-size: 40px;
   font-weight: 700;
   line-height: 48px;
- 
 }
 
 .btn {
@@ -99,7 +98,7 @@ body{
   align-items: center;
 }
 
-.d-none{
+.d-none {
   display: none;
 }
 
@@ -109,4 +108,37 @@ body{
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+@media (max-width: 550px) {
+  :root {
+    --small-indent: 12px;
+    /* --middle-indent: 24px;*/
+    --big-indent: 40px; 
+  }
+  .simpleTxt {
+    font-family: "Play";
+    font-size: 18px;
+  }
+  .miniTxt {
+    font-size: 14px;
+  }
+  .boldTxt {
+    font-size: 24px;
+  }
+  .sectionBlock{
+    padding-bottom: 32px;
+  }
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 500;
+  }
+  section{
+    overflow: hidden;
+  }
 }

@@ -1,4 +1,4 @@
-import { Movie } from "../../../components/hero/Hero"
+import { Movie } from "../Hero"
 
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./mainFilmInfo.module.css"

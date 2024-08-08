@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./miniInfo.module.css";
-import { Movie } from "../../components/hero/Hero";
+import { Movie } from "../hero/Hero";
 import { getValidDurating, getValidRating } from "./miniIfoValidation";
 
 interface MiniInfoProps {
@@ -12,7 +12,7 @@ export function MiniInfo({ movie }: MiniInfoProps) {
   return (
     <ul className={styles.stats}>
       <p
-        className={`${styles.statisticValue} simpleTxt ${styles.accentPlate} ${
+        className={`${styles.statisticValue} simpleTxt miniTxt ${styles.accentPlate} ${
           styles[getValidRating(movie.tmdbRating).colorRating]
         }`}
       >
@@ -32,19 +32,19 @@ export function MiniInfo({ movie }: MiniInfoProps) {
         {getValidRating(movie.tmdbRating).validRating}
       </p>
       <p
-        className={`${styles.statisticValue} simpleTxt ${styles.infoIndicator}`}
+        className={`${styles.statisticValue} simpleTxt  miniTxt  ${styles.infoIndicator}`}
       >
         {" "}
         {movie.releaseYear}
       </p>
       <p
-        className={`${styles.statisticValue} simpleTxt ${styles.infoIndicator}`}
+        className={`${styles.statisticValue} simpleTxt  miniTxt ${styles.infoIndicator}`}
       >
         {" "}
         {movie.genres[0]}
       </p>
       <p
-        className={`${styles.statisticValue} simpleTxt ${styles.infoIndicator}`}
+        className={`${styles.statisticValue} simpleTxt  miniTxt ${styles.infoIndicator}`}
       >
         {getValidDurating(movie.runtime)}
       </p>

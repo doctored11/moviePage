@@ -46,15 +46,20 @@
 
 @media (max-width: 780px) {
   .back {
-    position: block;
+    position: initial;
+    display: block;
     right: 0;
     top: 0;
   
   
     width: 100%;
     max-width: 100vw;
-    min-height: 20vh;
-    height: max-content;
+    min-height: 35vh;
+    max-height: 65vh;
+    height: auto;
+  }
+  .gradient{
+    display: none;
   }
 }
 

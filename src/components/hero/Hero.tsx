@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 import { BackImageBlock } from "./backImageBlock/BackImageBlock";
 import { MainFilmInfo } from "./mainFilmInfo/MainFilmInfo";
 import { FavoriteBtn } from "./favoriteBtn/FavoriteBtn";
-import { ModalVideo } from "../../components/modal/ModalVideo";
+import { ModalVideo } from "../modal/ModalVideo";
 
 export interface Movie {
   id: number;
@@ -43,13 +43,16 @@ export function Hero({ movie }: { movie: Movie }) {
   const backRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    
     const fetchUserProfile = async () => {
       try {
-        if (film?.posterUrl) {
+        if (film.posterUrl) {
           const img = new Image();
+        
           img.src = film.posterUrl;
+          
           img.onload = () => {
-            console.log(img.width, img.height);
+           
             setImageWidth(img.width);
           };
         }
@@ -59,11 +62,12 @@ export function Hero({ movie }: { movie: Movie }) {
     };
 
     fetchUserProfile();
-  }, []);
+  }, [film]);
 
   useEffect(() => {
     if (backRef.current) {
-      backRef.current.style.width = `${imageWidth}px`;
+      if (window.window.innerWidth > 550)
+        backRef.current.style.width = `${imageWidth}px`;
     }
   }, [imageWidth]);
 
@@ -91,7 +95,12 @@ export function Hero({ movie }: { movie: Movie }) {
         )}
       </div>
       {isModalOpen && (
-        <ModalVideo isOpen={isModalOpen} onClose={closeModal} link={film.trailerUrl} title={film.title}></ModalVideo>
+        <ModalVideo
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          link={film.trailerUrl}
+          title={film.title}
+        ></ModalVideo>
       )}
     </div>
   );

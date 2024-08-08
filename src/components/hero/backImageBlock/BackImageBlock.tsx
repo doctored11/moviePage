@@ -1,6 +1,6 @@
 import React, { forwardRef, useEffect, useRef, useState } from "react";
 import styles from "./backImageBlock.module.css";
-import { Movie } from "../../../components/hero/Hero"
+import { Movie } from "../Hero"
 
 interface BackImageBlockProps {
   film: Movie;

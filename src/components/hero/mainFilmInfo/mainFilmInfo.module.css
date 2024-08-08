@@ -12,3 +12,16 @@
 .description {
   margin-bottom: calc(3.8 * var(--small-indent));
 }
+
+@media (max-width: 780px) {
+  .description {
+    margin-bottom: calc(2 * var(--small-indent));
+  }
+}
+@media (max-width: 550px) {
+  .title{
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+  }
+}

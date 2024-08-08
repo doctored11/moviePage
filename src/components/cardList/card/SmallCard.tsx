@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./card.module.css";
-import { MiniInfo } from "../../../components/miniInfo/MiniInfo";
+import { MiniInfo } from "../../miniInfo/MiniInfo";
 import { Link } from "react-router-dom";
-import { Movie } from "../../../components/hero/Hero";
+import { Movie } from "../../hero/Hero";
 
 export interface SimpleCardProps {
   movie: Movie;

@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import styles from "./modal.module.css";
 import { getProfile, loginUser, registerUser } from "../../api/authApi";
 import { Logo } from "../logo/Logo";
-import { VideoPlayer } from "../../components/videoPlayer/VideoPlayer";
+import { VideoPlayer } from "../videoPlayer/VideoPlayer";
 
 interface ModalProps {
   isOpen: boolean;

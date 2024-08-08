@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./aboutBlock.module.css";
-import { Movie } from "../../components/hero/Hero";
+import { Movie } from "../hero/Hero";
 
 function isEmpty(value: any): boolean {
   if (value == null) {

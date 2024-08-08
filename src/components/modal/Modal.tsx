@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 
 import styles from "./modal.module.css";
 import { getProfile, loginUser, registerUser } from "../../api/authApi";
-import { Logo } from "../../components/logo/Logo";
+import { Logo } from "../logo/Logo";
 import {
   validateEmail,
   validatePassword,

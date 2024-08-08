@@ -8,7 +8,7 @@ import { MainFilmInfo } from "./mainFilmInfo/MainFilmInfo";
 import { Link } from "react-router-dom";
 import { Movie } from "./Hero";
 import { FavoriteBtn } from "./favoriteBtn/FavoriteBtn";
-import { ModalVideo } from "../../components/modal/ModalVideo";
+import { ModalVideo } from "../modal/ModalVideo";
 
 // todo заадаптировать от 900px примерно картинку в колонку
 
@@ -34,6 +34,7 @@ export function HeroRandom() {
   }
 
   useEffect(() => {
+    console.log("1111111111112")
     const fetchUserProfile = async () => {
       try {
         const film = await handleResetFilm();
@@ -42,7 +43,7 @@ export function HeroRandom() {
           const img = new Image();
           img.src = film.posterUrl;
           img.onload = () => {
-            console.log(img.width, img.height);
+           
             setImageWidth(img.width);
           };
         }
@@ -57,7 +58,8 @@ export function HeroRandom() {
 
   useEffect(() => {
     if (backRef.current) {
-      backRef.current.style.width = `${imageWidth}px`;
+      if (window.window.innerWidth > 550)
+        backRef.current.style.width = `${imageWidth}px`;
     }
   }, [imageWidth]);
 
@@ -72,14 +74,14 @@ export function HeroRandom() {
 
             <ul className={styles.btnBlock}>
               <button
-                className={`btn btn--active   ${styles.filmButton}`}
+                className={`btn btn--active   ${styles.filmButton} ${styles.filmVideoButton}`}
                 onClick={openModal}
               >
                 Трейлер
               </button>
               <Link
                 to={`/movie/${randomFilm.id}`}
-                className={`btn    ${styles.filmButton}`}
+                className={`btn    ${styles.filmButton}   ${styles.aboutButton}`}
               >
                 О Фильме
               </Link>
@@ -113,7 +115,7 @@ export function HeroRandom() {
             randomFilm?.trailerUrl ||
             "https://www.youtube.com/watch?v=xvFZjo5PgG0"
           }
-          title={randomFilm?.title||"Фильм"}
+          title={randomFilm?.title || "Фильм"}
         ></ModalVideo>
       )}
     </div>

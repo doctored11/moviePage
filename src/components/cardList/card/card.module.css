@@ -178,3 +178,16 @@ a {
   border: 1px solid var(--color-second-gray);
   border-radius: 12px;
 }
+
+@media (max-width: 550px) {
+  .cardContainer {
+    position: relative;
+    min-width: 200px;
+    min-height: 300px;
+
+    max-width: 225px;
+    max-height: 337px;
+    display: inline-block;
+  }
+  
+}

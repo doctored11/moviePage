@@ -17,6 +17,7 @@ getMoviesByCount(44).then(console.log);
 
 // regUser("почта", "нагоршкесидиткороль", "я", "янович").then((data) =>
 //   console.log(data)
+// getRandomMovie().then(console.log)
 // TODO сверстать футер + сделать адаптив 720 - 2000
 const App = () => {
   return (

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styles from "./header.module.css";
 import { getProfile, logoutUser } from "../../api/authApi";
-import { Modal } from "../../components/modal/Modal";
+import { Modal } from "../modal/Modal";
 import { HeaderNavigation } from "./headerNavigation/HeaderNavigation";
 import { UserBlock } from "./userBlock/UserBlock";
 import { Link } from "react-router-dom";
-import { Logo } from "../../components/logo/Logo";
+import { Logo } from "../logo/Logo";
 
 export function Header() {
   useEffect(() => console.log("__header"), []);

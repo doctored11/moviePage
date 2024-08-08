@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./categoryBlock.module.css";
-import { CardList } from "../../components/cardList/CardList";
+import { CardList } from "../cardList/CardList";
 
 interface CategoryBlockProps {
   header: string;

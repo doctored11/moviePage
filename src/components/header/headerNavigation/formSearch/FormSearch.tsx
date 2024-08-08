@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import styles from "./formSearch.module.css";
 import { getMovieByTitle } from "../../../../api/filmApi";
 import { DropDownList } from "./dropDownList/DropDownList";
-import { Movie } from "../../../../components/hero/Hero";
+import { Movie } from "../../../hero/Hero";
 
 export function FormSearch() {
   const [query, setQuery] = useState("");

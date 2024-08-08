@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./cardList.module.css";
 import { getGenres, getMoviesByGenry } from "../../api/filmApi";
-import { GenreCard } from "../../components/cardList/card/GenreCard";
-import { Movie } from "../../components/hero/Hero";
+import { GenreCard } from "./card/GenreCard";
+import { Movie } from "../hero/Hero";
 
 export function GenreList() {
   const [categories, setCategories] = useState([]);

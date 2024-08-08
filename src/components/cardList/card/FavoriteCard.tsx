@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./card.module.css";
-import { MiniInfo } from "../../../components/miniInfo/MiniInfo";
+import { MiniInfo } from "../../miniInfo/MiniInfo";
 import { Link } from "react-router-dom";
 import { SimpleCard, SimpleCardProps } from "./SimpleCard";
 import { deleteFavoritesFilms } from "../../../api/authApi";

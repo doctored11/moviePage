@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./dropDownList.module.css";
-import { Movie } from "../../../../../components/hero/Hero";
-import { SmallCard } from "../../../../../components/cardList/card/SmallCard";
+import { Movie } from "../../../../hero/Hero";
+import { SmallCard } from "../../../../cardList/card/SmallCard";
 
 export function DropDownList({
   movies,

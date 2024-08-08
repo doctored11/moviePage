@@ -71,6 +71,16 @@
   .btnBlock {
     width: 100%;
   }
+  .hero{
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .content{
+    width: 100%;
+    max-width: inherit;
+    padding: var(--middle-indent) 0;
+  }
+  
 }
 
 @media (max-width: 550px) {
