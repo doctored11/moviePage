@@ -8,6 +8,17 @@
 .navSection {
   width: 60%;
 }
+.navigationUl {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+.icon {
+  display: none;
+}
+
 .navItem {
   color: var(--color-white);
   text-decoration: none;
@@ -38,6 +49,36 @@
 .navItem:not(:last-child) {
   margin-right: 2.5rem;
 }
-.navItem:last-child{
+.navItem:last-child {
   flex: 2;
+}
+
+@media (max-width: 1080px) {
+  .icon {
+    display: inline;
+  }
+  .mainLink {
+    display: none;
+  }
+
+  .text {
+    display: none;
+  }
+
+  .navItem {
+    margin: 0 5px;
+  }
+  .navItem:last-child {
+    flex: initial;
+  }
+  .navigationUl{
+    justify-content: flex-end;
+  }
+  .navItem:not(:last-child) {
+    margin-right: 1rem;
+  }
+  .searchItem{
+    display: block;
+    width: 100%;
+  }
 }
