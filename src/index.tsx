@@ -12,6 +12,7 @@ import { createRoot } from "react-dom/client";
 import { CategoryPage } from "./pages/categoryPage/CategoryPage";
 import { GenreFilmPage } from "./pages/genreFilmsPage/GenreFilmPage";
 import { PersonPage } from "./pages/personPage/PersonPage";
+import { ClickAwayProvider } from "./components/сlickAwayZone/ClickAwayContext";
 
 getMoviesByCount(44).then(console.log);
 
@@ -36,5 +37,9 @@ const App = () => {
 const rootEl = document.getElementById("root");
 if (rootEl) {
   const root = createRoot(rootEl);
-  root.render(<App />);
+  root.render(
+    <ClickAwayProvider>
+      <App />
+    </ClickAwayProvider>
+  );
 }

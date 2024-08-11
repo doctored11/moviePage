@@ -71,14 +71,24 @@
   .navItem:last-child {
     flex: initial;
   }
-  .navigationUl{
+  .navigationUl {
     justify-content: flex-end;
   }
   .navItem:not(:last-child) {
     margin-right: 1rem;
   }
-  .searchItem{
+  .searchItem {
     display: block;
+    z-index: 9;
     width: 100%;
+  }
+  .overlay {
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.114);
   }
 }
