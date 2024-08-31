@@ -6,7 +6,7 @@ import { Header } from "../../components/header/Header";
 import { CardList } from "../../components/cardList/CardList";
 import { CategoryBlock } from "../../components/categoryBlock/CategoryBlock";
 import { getTop10 } from "../../api/filmApi";
-import { Footer } from "../../components/Footer";
+import { Footer } from "../../components/footer/Footer";
 
 export function MainPage() {
 

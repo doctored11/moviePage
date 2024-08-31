@@ -6,7 +6,7 @@ import { Movie } from "../../components/hero/Hero";
 import { GenreList } from "../../components/cardList/GenreList";
 import { Header } from "../../components/header/Header";
 import { CategoryBlock } from "../../components/categoryBlock/CategoryBlock";
-import { Footer } from "../../components/Footer";
+import { Footer } from "../../components/footer/Footer";
 export function CategoryPage() {
  
 

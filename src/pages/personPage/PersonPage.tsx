@@ -11,7 +11,7 @@ import {
 } from "../../api/authApi";
 import { InfoBlock } from "./infoBlock/InfoBlock";
 import { Link, useNavigate } from "react-router-dom";
-import { Footer } from "../../components/Footer";
+import { Footer } from "../../components/footer/Footer";
 
 interface User {
   name: string;

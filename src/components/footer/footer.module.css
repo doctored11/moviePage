@@ -49,3 +49,9 @@
   align-items: center;
   margin-right: 5px;
 }
+.accentDescription{
+  margin-right: 1rem;
+}
+.contentPart{
+  display: flex;
+}

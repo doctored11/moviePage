@@ -18,7 +18,7 @@ export const ClickAwayProvider: React.FC<{ children: ReactNode }> = ({ children 
   return (
     <ClickAwayContext.Provider value={{ setIsVisible, setHandleClose }}>
       {children}
-      {isVisible && <ClickAwayZone onClick={handleClose} />}
+      {isVisible && <ClickAwayZone onClick={handleClose} status={isVisible}/>}
     </ClickAwayContext.Provider>
   );
 };

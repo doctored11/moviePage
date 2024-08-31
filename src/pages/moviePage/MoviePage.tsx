@@ -36,7 +36,7 @@ export function MoviePage() {
     <>
       <Header></Header>
       <Hero movie={movie as Movie}></Hero>
-      <CategoryBlock header="топ фильмов">
+      <CategoryBlock header="О фильме">
         <div className={styles.limiter}>
           <AboutBlock movie={movie as Movie}></AboutBlock>
         </div>

@@ -6,7 +6,7 @@ export function Footer() {
     <footer className={styles.footerSection}>
       <div className={`frame  ${styles.footerFrame} ` }>
         <div className={styles.contentPart}>
-          <h3 className={` ${styles.description}`}>LLC «Мультимедиа Визион»</h3>
+          <h3 className={` ${styles.description} ${styles.accentDescription}`}>LLC «Мультимедиа Визион»</h3>
           <p className={` ${styles.description} ${styles.descriptionSmall} `}>
             <span className={styles.cLog}>
               <svg

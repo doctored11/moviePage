@@ -12,11 +12,11 @@ import {
   validateSurname,
   validateForm,
 } from "./validation";
+import { useClickAway } from "../../components/сlickAwayZone/ClickAwayContext";
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-
 }
 
 export function Modal({ isOpen, onClose }: ModalProps) {
@@ -41,8 +41,14 @@ export function Modal({ isOpen, onClose }: ModalProps) {
     );
     // setErrors(formErrors);
     setIsFormValid(Object.values(formErrors).every((error) => error === null));
-   
   }, [email, password, secondPassword, name, surname, isRegister]);
+
+  const { setIsVisible, setHandleClose } = useClickAway();
+
+  useEffect(() => {
+    setIsVisible(isOpen);
+    setHandleClose(()=> onClose);
+  }, [isOpen, onClose]);
 
   useEffect(() => {
     if (isOpen) {
@@ -58,7 +64,6 @@ export function Modal({ isOpen, onClose }: ModalProps) {
 
   const handleRegister = async () => {
     try {
-      
       await registerUser({ email, password, name, surname });
       alert("Регистрация успешна!");
       onClose();
@@ -68,20 +73,22 @@ export function Modal({ isOpen, onClose }: ModalProps) {
   };
 
   const handleLogin = async () => {
-    console.log("login")
+    console.log("login");
     const formErrors = validateForm(email, password, "", "", "", isRegister);
     setErrors(formErrors);
-    console.log(formErrors)
-    if (Object.values(formErrors).some(error => error !== "" && error !== null)) {
+    console.log(formErrors);
+    if (
+      Object.values(formErrors).some((error) => error !== "" && error !== null)
+    ) {
       return;
     }
     try {
-      console.log("login1")
+      console.log("login1");
       await loginUser({ email, password });
       alert("Вход успешен!");
       onClose();
     } catch (error) {
-      console.log("login2")
+      console.log("login2");
       alert("Ошибка входа: " + (error as Error).message);
     }
   };
@@ -118,134 +125,130 @@ export function Modal({ isOpen, onClose }: ModalProps) {
   if (!isOpen) {
     return null;
   }
-  
+
   const modalBlock = ReactDOM.createPortal(
-    <div className={styles.modalOverlay}>
-      <div className={styles.modalContent}>
-        <button className={styles.closeButton} onClick={onClose}>
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+    //  <div className={styles.modalOverlay}>
+    <div className={styles.modalContent}>
+      <button className={styles.closeButton} onClick={onClose}>
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10.5859 12L2.79297 4.20706L4.20718 2.79285L12.0001 10.5857L19.793 2.79285L21.2072 4.20706L13.4143 12L21.2072 19.7928L19.793 21.2071L12.0001 13.4142L4.20718 21.2071L2.79297 19.7928L10.5859 12Z"
+            fill="black"
+          />
+        </svg>
+      </button>
+
+      <Logo fontSize={28}></Logo>
+
+      {isRegister ? (
+        <>
+          <input
+            className={`${styles.input} ${errors.email && styles.errorInput}`}
+            type="email"
+            placeholder="Почта"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            onBlur={(e) => handleChange("email", e.target.value)}
+          />
+
+          <input
+            className={`${styles.input}  ${errors.name && styles.errorInput} `}
+            type="text"
+            placeholder="Имя"
+            value={name}
+            onChange={(e) => handleChange("name", e.target.value)}
+          />
+
+          <input
+            className={`${styles.input} ${errors.surname && styles.errorInput}`}
+            type="text"
+            placeholder="Фамилия"
+            value={surname}
+            onChange={(e) => handleChange("surname", e.target.value)}
+          />
+
+          <input
+            className={`${styles.input} ${
+              errors.password && styles.errorInput
+            }`}
+            type="password"
+            placeholder="Пароль"
+            value={password}
+            onChange={(e) => handleChange("password", e.target.value)}
+          />
+
+          <input
+            className={`${styles.input} password   ${
+              errors.secondPassword && styles.errorInput
+            }`}
+            type="password"
+            placeholder="Подтвердите пароль"
+            value={secondPassword}
+            onChange={(e) => handleChange("secondPassword", e.target.value)}
+          />
+
+          <button
+            onClick={handleRegister}
+            className={`btn btn--active ${styles.mainBtn}`}
+            disabled={!isFormValid}
           >
-            <path
-              d="M10.5859 12L2.79297 4.20706L4.20718 2.79285L12.0001 10.5857L19.793 2.79285L21.2072 4.20706L13.4143 12L21.2072 19.7928L19.793 21.2071L12.0001 13.4142L4.20718 21.2071L2.79297 19.7928L10.5859 12Z"
-              fill="black"
-            />
-          </svg>
-        </button>
-        
-        <Logo fontSize={28}></Logo>
+            Зарегистрироваться
+          </button>
+          <button
+            onClick={() => setIsRegister(false)}
+            className={`${styles.secondBtn}`}
+          >
+            Уже есть аккаунт? Войти
+          </button>
+        </>
+      ) : (
+        <>
+          <input
+            className={`${styles.input} simpleTxt ${
+              errors.email && styles.errorInput
+            }`}
+            type="email"
+            placeholder="Почта"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            onBlur={(e) => handleChange("email", e.target.value)}
+          />
 
-        {isRegister ? (
-          <>
-            <input
-              className={`${styles.input} ${errors.email && styles.errorInput}`}
-              type="email"
-              placeholder="Почта"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              onBlur={(e) => handleChange("email", e.target.value)}
-            />
-
-            <input
-              className={`${styles.input}  ${
-                errors.name && styles.errorInput
-              } `}
-              type="text"
-              placeholder="Имя"
-              value={name}
-              onChange={(e) => handleChange("name", e.target.value)}
-            />
-
-            <input
-              className={`${styles.input} ${
-                errors.surname && styles.errorInput
-              }`}
-              type="text"
-              placeholder="Фамилия"
-              value={surname}
-              onChange={(e) => handleChange("surname", e.target.value)}
-            />
-
-            <input
-              className={`${styles.input} ${
-                errors.password && styles.errorInput
-              }`}
-              type="password"
-              placeholder="Пароль"
-              value={password}
-              onChange={(e) => handleChange("password", e.target.value)}
-            />
-
-            <input
-              className={`${styles.input} password   ${
-                errors.secondPassword && styles.errorInput
-              }`}
-              type="password"
-              placeholder="Подтвердите пароль"
-              value={secondPassword}
-              onChange={(e) => handleChange("secondPassword", e.target.value)}
-            />
-
-            <button
-              onClick={handleRegister}
-              className={`btn btn--active ${styles.mainBtn}`}
-              disabled={!isFormValid}
-            >
-              Зарегистрироваться
-            </button>
-            <button
-              onClick={() => setIsRegister(false)}
-              className={`${styles.secondBtn}`}
-            >
-              Уже есть аккаунт? Войти
-            </button>
-          </>
-        ) : (
-          <>
-            <input
-              className={`${styles.input} simpleTxt ${
-                errors.email && styles.errorInput
-              }`}
-              type="email"
-              placeholder="Почта"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              onBlur={(e) => handleChange("email", e.target.value)}
-            />
-
-            <input
-              className={`${styles.input} simpleTxt ${
-                errors.seconpassworddPassword && styles.errorInput
-              }`}
-              type="password"
-              placeholder="Пароль"
-              value={password}
-              onChange={(e) => handleChange("password", e.target.value)}
-            />
-            {/* {errors.password && (
+          <input
+            className={`${styles.input} simpleTxt ${
+              errors.seconpassworddPassword && styles.errorInput
+            }`}
+            type="password"
+            placeholder="Пароль"
+            value={password}
+            onChange={(e) => handleChange("password", e.target.value)}
+          />
+          {/* {errors.password && (
               <div className={styles.error}>{errors.password}</div>
             )} */}
-            <button
-              onClick={handleLogin}
-              className={`btn btn--active ${styles.mainBtn}`}
-              disabled={!isFormValid}
-            >
-              Войти
-            </button>
-            <button
-              onClick={() => setIsRegister(true)}
-              className={`${styles.secondBtn}`}
-            >
-              Нет аккаунта? Зарегистрироваться
-            </button>
-          </>
-        )}
-      </div>
+          <button
+            onClick={handleLogin}
+            className={`btn btn--active ${styles.mainBtn}`}
+            disabled={!isFormValid}
+          >
+            Войти
+          </button>
+          <button
+            onClick={() => setIsRegister(true)}
+            className={`${styles.secondBtn}`}
+          >
+            Нет аккаунта? Зарегистрироваться
+          </button>
+        </>
+      )}
     </div>,
+    // </div>,
     document.getElementById("modal") as Element
   );
   return modalBlock;

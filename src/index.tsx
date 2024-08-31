@@ -23,18 +23,22 @@ getMoviesByCount(44).then(console.log);
 const App = () => {
   return (
     <BrowserRouter>
-      <Routes>
+    <div id = "modal"></div>
+      <Routes>  
         <Route path="/" element={<MainPage></MainPage>} />
         <Route path="/movie/:id" element={<MoviePage />} />
         <Route path="/categories" element={<CategoryPage />} />
         <Route path="/:category" element={<GenreFilmPage />} />
         <Route path="/person" element={<PersonPage />} />
       </Routes>
+
+      
     </BrowserRouter>
   );
 };
 
 const rootEl = document.getElementById("root");
+
 if (rootEl) {
   const root = createRoot(rootEl);
   root.render(

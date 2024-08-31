@@ -6,7 +6,7 @@ import { CardList } from "../../components/cardList/CardList";
 import { getMoviesPage, getTop10 } from "../../api/filmApi";
 import { useParams } from "react-router-dom";
 import { Movie } from "../../components/hero/Hero";
-import { Footer } from "../../components/Footer";
+import { Footer } from "../../components/footer/Footer";
 
 export function GenreFilmPage() {
   const [cardList, setCardList] = useState<Movie[]>([]);

@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./headerNavigation.module.css";
 import { Link } from "react-router-dom";
 import { FormSearch } from "./formSearch/FormSearch";
-import { ClickAwayZone } from "../../../components/сlickAwayZone/ClickAwayZone";
-import { useClickAway } from "../../../components/сlickAwayZone/ClickAwayContext";
+import { ClickAwayZone } from "../../сlickAwayZone/ClickAwayZone";
+import { useClickAway } from "../../сlickAwayZone/ClickAwayContext";
 
 // TODO
 // Видимо еще useref передавать в поиск - подумать!
