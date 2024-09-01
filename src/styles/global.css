@@ -29,6 +29,7 @@
 
 * {
   box-sizing: border-box;
+  outline-color: var(--color-second-accent);
   /* border: 2px solid rgba(4, 175, 4, 0.568); */
 }
 
@@ -69,6 +70,7 @@ body {
 
 .btn {
   cursor: pointer;
+  outline: none;
 
   padding: 1rem 3rem;
   color: var(--color-white);
@@ -82,14 +84,15 @@ body {
   line-height: 24px;
   transition: background-color 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-.btn:hover {
+.btn:hover, .btn:focus {
+ 
   background-color: var(--color-second-gray);
 }
 
 .btn--active {
   background-color: var(--color-accent);
 }
-.btn--active:hover {
+.btn--active:hover, .btn--active:focus {
   background-color: var(--color-second-accent);
 }
 .btnSmall {

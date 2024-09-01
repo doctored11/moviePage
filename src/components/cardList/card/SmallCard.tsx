@@ -12,7 +12,7 @@ export interface SimpleCardProps {
 export function SmallCard({ movie, num }: SimpleCardProps) {
   const card = (
     <div className={styles.smallCardContainer}>
-      <Link className={styles.smallCard} to={`/movie/${movie.id}`}>
+      <Link className={styles.smallCard} to={`/movie/${movie.id}`} >
         <div
           className={styles.cardImg}
           style={{

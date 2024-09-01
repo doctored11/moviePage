@@ -4,9 +4,11 @@ import styles from "./footer.module.css";
 export function Footer() {
   const block = (
     <footer className={styles.footerSection}>
-      <div className={`frame  ${styles.footerFrame} ` }>
+      <div className={`frame  ${styles.footerFrame} `}>
         <div className={styles.contentPart}>
-          <h3 className={` ${styles.description} ${styles.accentDescription}`}>LLC «Мультимедиа Визион»</h3>
+          <h3 className={` ${styles.description} ${styles.accentDescription}`}>
+            LLC «Мультимедиа Визион»
+          </h3>
           <p className={` ${styles.description} ${styles.descriptionSmall} `}>
             <span className={styles.cLog}>
               <svg
@@ -27,7 +29,7 @@ export function Footer() {
           </p>
         </div>
         <ul className={styles.socialPart}>
-          <li className={styles.socialItem}>
+          <a className={styles.socialItem} href="#">
             <svg
               width="19"
               height="11"
@@ -43,8 +45,8 @@ export function Footer() {
                 fill-opacity="0.8"
               />
             </svg>
-          </li>
-          <li className={styles.socialItem}>
+          </a>
+          <a className={styles.socialItem} href="#">
             <svg
               width="16"
               height="12"
@@ -60,8 +62,8 @@ export function Footer() {
                 fill-opacity="0.8"
               />
             </svg>
-          </li>
-          <li className={styles.socialItem}>
+          </a>
+          <a className={styles.socialItem} href="#">
             <svg
               width="12"
               height="19"
@@ -82,8 +84,8 @@ export function Footer() {
                 fill-opacity="0.8"
               />
             </svg>
-          </li>
-          <li className={styles.socialItem}>
+          </a>
+          <a className={styles.socialItem} href="#">
             <svg
               width="17"
               height="15"
@@ -97,7 +99,7 @@ export function Footer() {
                 fill-opacity="0.8"
               />
             </svg>
-          </li>
+          </a>
         </ul>
       </div>
     </footer>

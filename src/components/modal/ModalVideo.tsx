@@ -28,6 +28,7 @@ export function ModalVideo({ isOpen, onClose, link, title }: ModalProps) {
       setIsVisible(false);
       setHandleClose(() =>  {});
     };
+    
   }, [isOpen, onClose, setHandleClose, setIsVisible]);
 
   if (!isOpen) return null;

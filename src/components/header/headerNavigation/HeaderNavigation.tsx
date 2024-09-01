@@ -43,16 +43,16 @@ export function HeaderNavigation() {
 
       <nav className={styles.navSection}>
         <ul className={styles.navigationUl}>
-          <li className={`${styles.navItem}  ${styles.linkNavugation} `}>
+          <li className={`${styles.navItem}  ${styles.linkNavigation} `} >
             <Link
               to="/"
-              className={`${styles.navLink} ${styles.mainLink} simpleTxt`}
-            >
+              className={`${styles.navLink} ${styles.mainLink} simpleTxt`}    
+            > 
               <span className={styles.text}>Главная</span>
             </Link>
           </li>
           {!isSearchVisible && (
-            <li className={`${styles.navItem} ${styles.linkNavugation} `}>
+            <li className={`${styles.navItem} ${styles.linkNavigation} `}>
               <Link to="/categories" className={`${styles.navLink} simpleTxt`}>
                 <span className={styles.icon}>
                   <svg

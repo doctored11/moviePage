@@ -30,13 +30,13 @@ export function UserBlock() {
   const usBlock = (
     <>
       {user && (
-        <Link to="/person" className={`simpleTxt ${styles.logBtn} `}>
+        <Link to="/person" className={`simpleTxt ${styles.logBtn} ${styles.linkNavigation} `}>
           {user}
         </Link>
       )}
       {!user && (
         <>
-          <button className={`simpleTxt ${styles.logBtn}`} onClick={openModal}>
+          <button className={`simpleTxt ${styles.logBtn} ${styles.linkNavigation} `} onClick={openModal}>
             Войти
           </button>
           <Modal isOpen={isModalOpen} onClose={closeModal}></Modal>

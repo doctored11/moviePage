@@ -14,7 +14,9 @@
     background-size: 200% 100%;
   }
   
-  .logo:hover {
+  .logo:hover, .logo:focus {
+     outline: none;
     background-position: 100% 0;
     cursor: pointer;
   }
+    

@@ -25,7 +25,8 @@
 }
 .socialPart {
   display: flex;
-  margin: 0;padding: 0;
+  margin: 0;
+  padding: 0;
 }
 .socialItem {
   border: 2px solid var(--color-white);
@@ -37,9 +38,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  outline: none;
 }
-.socialItem:not(:last-child){
-    margin-right: var(--small-indent);
+.socialItem:not(:last-child) {
+  margin-right: var(--small-indent);
+}
+.socialItem:focus svg > path {
+  fill: var(--color-second-accent);
+}
+.socialItem:focus{
+  border-color: var(--color-accent);
 }
 .cLog {
   display: flex;
@@ -49,9 +57,9 @@
   align-items: center;
   margin-right: 5px;
 }
-.accentDescription{
+.accentDescription {
   margin-right: 1rem;
 }
-.contentPart{
+.contentPart {
   display: flex;
 }

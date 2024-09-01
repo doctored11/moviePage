@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./formSearch.module.css";
 import { getMovieByTitle } from "../../../../api/filmApi";
 import { DropDownList } from "./dropDownList/DropDownList";
@@ -7,6 +7,7 @@ import { Movie } from "../../../hero/Hero";
 export function FormSearch() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<Movie[]>([]);
+ 
 
   function handleClick() {
     console.log("00_)0");
@@ -18,7 +19,7 @@ export function FormSearch() {
       if (searchQuery) {
         const res = await getMovieByTitle(searchQuery);
         console.log(res);
-        setResults(res); 
+        setResults(res);
       }
     }, 600),
     []
@@ -43,16 +44,19 @@ export function FormSearch() {
     const value = event.target.value;
     setQuery(value.trim());
   }
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+  }
 
   const formBlock = (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Поиск"
         className={styles.searchInput}
         onChange={handleOnChange}
       />
-      <button type="submit" className={styles.searchButton}>
+      <button type="submit" className={styles.searchButton} tabIndex={-1}>
         <svg
           width="24"
           height="24"
@@ -66,7 +70,13 @@ export function FormSearch() {
           />
         </svg>
       </button>
-      {results.length>0 && <DropDownList movies={results} click={handleClick} handleToClose={()=>setResults([])}></DropDownList>}
+      {results.length > 0 && (
+        <DropDownList
+          movies={results}
+          click={handleClick}
+          handleToClose={() => setResults([])}
+        ></DropDownList>
+      )}
     </form>
   );
   return formBlock;

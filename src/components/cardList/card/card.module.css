@@ -135,7 +135,6 @@
 
 .smallCardContainer {
   background-color: var(--color-gray);
-  
 }
 .smallCard {
   width: 100%;
@@ -144,6 +143,7 @@
   border: 1px solid var(--color-gray);
   padding: 20px 15px;
 }
+
 .cardImg {
   width: 20%;
   min-width: 40px;
@@ -174,9 +174,11 @@ a {
   text-decoration: none;
 }
 
-.smallCard:hover , .smallCard:focus{
+.smallCard:hover,
+.smallCard:focus {
   border: 1px solid var(--color-second-gray);
   border-radius: 12px;
+  outline: none;
 }
 
 @media (max-width: 550px) {
@@ -189,5 +191,4 @@ a {
     max-height: 337px;
     display: inline-block;
   }
-  
 }
