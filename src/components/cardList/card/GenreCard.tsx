@@ -11,9 +11,9 @@ interface GenryCardProps {
 
 export function GenreCard({ movie,genry }: GenryCardProps) {
   const card = (
-    <div className={styles.cardContainer}>
+    <div className={`${styles.cardContainer} `}>
       <Link 
-        className={styles.sCard}
+        className={`${styles.sCard} ${styles.gCard} `}
         to={`/${genry}`}
         style={{
           backgroundImage: `url(${movie.posterUrl})`,

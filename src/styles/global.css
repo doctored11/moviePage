@@ -40,6 +40,12 @@ p {
   margin: 0;
   padding: 0;
 }
+/* #modal{
+  position: fixed;
+  width: 1vw;
+  height: 1vh;
+  
+} */
 body {
   background-color: var(--color-black);
 }
