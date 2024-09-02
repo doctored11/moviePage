@@ -119,7 +119,7 @@ body {
   height: 100%;
 }
 
-@media (max-width: 550px) {
+@media (max-width: 600px) {
   :root {
     --small-indent: 12px;
     /* --middle-indent: 24px;*/

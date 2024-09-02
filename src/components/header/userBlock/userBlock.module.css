@@ -10,6 +10,9 @@
   position: relative;
   outline: none;
 }
+.mobile{
+  display: none;
+}
 .linkNavigation::after {
   content: "";
   width: 100%;
@@ -25,4 +28,13 @@
 .linkNavigation:hover::after, .linkNavigation:focus::after {
   
   opacity: 1;
+}
+
+@media (max-width: 550px) {
+  .desktop{
+    display: none;
+  }
+  .mobile{
+    display: block;
+  }
 }

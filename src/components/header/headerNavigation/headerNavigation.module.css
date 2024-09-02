@@ -97,3 +97,17 @@
     background-color: rgba(0, 0, 0, 0.114);
   }
 }
+@media (max-width: 650px){
+  .searchItem {
+    display: flex;
+    position:absolute;
+   
+    
+    left: 4.5vw;
+    right: 4.5vw;
+    width:inherit;
+    top: 0;
+    
+  }
+
+}

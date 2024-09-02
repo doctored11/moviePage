@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./clickAwayZone.module.css";
 import { useClickAway } from "./ClickAwayContext";
 
-
+// todo выполнять не последний аутклик а все ( сделать очередь)
 interface ClickAwayZoneProps {
   status?:boolean
   onClick: () => void;

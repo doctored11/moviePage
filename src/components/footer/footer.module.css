@@ -46,7 +46,7 @@
 .socialItem:focus svg > path {
   fill: var(--color-second-accent);
 }
-.socialItem:focus{
+.socialItem:focus {
   border-color: var(--color-accent);
 }
 .cLog {
@@ -62,4 +62,29 @@
 }
 .contentPart {
   display: flex;
+}
+
+@media (max-width: 780px) {
+  .contentPart {
+    flex-direction: column;
+  }
+  .description {
+    font-weight: 500;
+    font-size: 18px;
+    text-align: left;
+    margin-bottom: 0.5rem;
+  }
+  .descriptionSmall {
+    font-size: 14px;
+    font-weight: 300;
+  }
+  
+}
+@media (max-width: 550px) {
+  .contentPart{
+    margin-bottom: 1rem;
+  }
+  .footerFrame{
+    flex-direction: column;
+  }
 }

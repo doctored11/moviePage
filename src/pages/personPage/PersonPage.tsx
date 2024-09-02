@@ -38,6 +38,30 @@ export function PersonPage() {
 
     getUser();
   }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const buttons = document.querySelectorAll(`.${styles.selectBtn}`);
+
+      buttons.forEach((button) => {
+        const span = button.querySelector("span");
+        if (!span) return
+        if (window.innerWidth < 650) {
+          span.textContent = button.getAttribute("data-short-text");
+        } else {
+          span.textContent = button.getAttribute("data-full-text");
+        }
+      });
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const navigate = useNavigate();
   const handleLogout = async () => {
     await logoutUser();
@@ -56,6 +80,8 @@ export function PersonPage() {
               className={`${styles.selectBtn} simpleTxt ${
                 mode == "films" ? styles.selectBtnActive : null
               }  `}
+              data-full-text="Избранные фильмы"
+              data-short-text="Избранное"
             >
               {" "}
               <svg
@@ -70,13 +96,15 @@ export function PersonPage() {
                   fill="white"
                 />
               </svg>
-              Избранные фильмы
+              <span>Избранные фильмы</span>
             </button>
             <button
               onClick={() => setMode("profile")}
               className={`${styles.selectBtn} simpleTxt ${
                 mode == "profile" ? styles.selectBtnActive : null
               }  `}
+              data-full-text="Настройки аккаунта"
+              data-short-text="Настройки"
             >
               <svg
                 width="24"
@@ -90,7 +118,7 @@ export function PersonPage() {
                   fill="white"
                 />
               </svg>
-              Настройки аккаунта
+              <span>Настройки аккаунта</span>
             </button>
           </div>
           {mode == "films" && (

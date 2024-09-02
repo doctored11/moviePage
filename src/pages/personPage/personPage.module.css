@@ -9,8 +9,8 @@
 .selectBtn > svg {
   margin-right: 5px;
 }
-.selectBtn:not(:last-child){
-    margin-right: var(--big-indent);
+.selectBtn:not(:last-child) {
+  margin-right: var(--big-indent);
 }
 
 .btnBlock {
@@ -29,4 +29,20 @@
 }
 .outBtn {
   text-decoration: none;
+}
+
+@media (max-width: 650px) {
+  .selectBtn {
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+
+  .btnBlock {
+    
+    display: flex;
+    flex-wrap: nowrap;
+    
+  }
 }
