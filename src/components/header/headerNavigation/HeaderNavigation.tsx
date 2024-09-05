@@ -34,7 +34,8 @@ export function HeaderNavigation() {
 
   useEffect(() => {
     setIsVisible(isSearchVisible);
-    setHandleClose(() => () => setIsSearchVisible(false));
+    setHandleClose(() => ()=> setIsSearchVisible(false));
+    console.log("поиск виден ",isSearchVisible)
   }, [isSearchVisible, setIsVisible, setHandleClose]);
 
   const navBlock = (

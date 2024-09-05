@@ -2,21 +2,41 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./clickAwayZone.module.css";
 import { useClickAway } from "./ClickAwayContext";
 
-// todo выполнять не последний аутклик а все ( сделать очередь)
+
 interface ClickAwayZoneProps {
-  status?:boolean
+  status?: boolean;
   onClick: () => void;
 }
 
-export function ClickAwayZone({ onClick,status=true }: ClickAwayZoneProps) {
-  const { setIsVisible} = useClickAway();
+export function ClickAwayZone({ onClick, status = true }: ClickAwayZoneProps) {
+  const { setIsVisible } = useClickAway();
+  const queRef = useRef<(() => void)[]>([]);
   const zoneRef = useRef<HTMLDivElement>(null);
 
+  function pushQue(newFn: () => void) {
+   
+    console.log('que +1')
+    queRef.current.push(newFn);
+  }
+
+  function clearQue() {
+   
+    queRef.current = []; 
+  }
+
   useEffect(() => {
+    pushQue(onClick);
+  
+
     function handleClickOutside(event: MouseEvent) {
       if (zoneRef.current) {
-        onClick();
-        setIsVisible(false)
+       
+        queRef.current.forEach((fn) => {
+          console.log("закрытие");
+          fn(); 
+        });
+        clearQue();
+        setIsVisible(false);
       }
     }
 
@@ -26,7 +46,5 @@ export function ClickAwayZone({ onClick,status=true }: ClickAwayZoneProps) {
       zoneRef.current?.removeEventListener("click", handleClickOutside);
     };
   }, [onClick]);
-  return (
-    <div ref={zoneRef} className={styles.overlay} />
-  );
+  return <div ref={zoneRef} className={styles.overlay} />;
 }
