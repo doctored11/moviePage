@@ -1,7 +1,7 @@
 import { Header } from "./components/header/Header";
 
 import { getMoviesByCount, getMoviesPage, getRandomMovie } from "./api/filmApi";
-import React from "react";
+import React, { useState } from "react";
 
 import { MainPage } from "./pages/main/MainPage";
 import "./styles/normalize.css";
@@ -13,6 +13,7 @@ import { CategoryPage } from "./pages/categoryPage/CategoryPage";
 import { GenreFilmPage } from "./pages/genreFilmsPage/GenreFilmPage";
 import { PersonPage } from "./pages/personPage/PersonPage";
 import { ClickAwayProvider } from "./components/сlickAwayZone/ClickAwayContext";
+import { UserContext } from "./components/userContext/UserContext";
 
 getMoviesByCount(44).then(console.log);
 
@@ -21,18 +22,20 @@ getMoviesByCount(44).then(console.log);
 // getRandomMovie().then(console.log)
 // TODO сверстать футер + сделать адаптив 720 - 2000
 const App = () => {
+  const [user, setUser] = useState(null);
+
   return (
     <BrowserRouter>
-    <div id = "modal"></div>
-      <Routes>  
-        <Route path="/" element={<MainPage></MainPage>} />
-        <Route path="/movie/:id" element={<MoviePage />} />
-        <Route path="/categories" element={<CategoryPage />} />
-        <Route path="/:category" element={<GenreFilmPage />} />
-        <Route path="/person" element={<PersonPage />} />
-      </Routes>
-
-      
+      <UserContext.Provider value={{ user, setUser }}>
+        <div id="modal"></div>
+        <Routes>
+          <Route path="/" element={<MainPage></MainPage>} />
+          <Route path="/movie/:id" element={<MoviePage />} />
+          <Route path="/categories" element={<CategoryPage />} />
+          <Route path="/:category" element={<GenreFilmPage />} />
+          <Route path="/person" element={<PersonPage />} />
+        </Routes>
+      </UserContext.Provider>
     </BrowserRouter>
   );
 };

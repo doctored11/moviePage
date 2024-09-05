@@ -1,11 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
 import styles from "./userBlock.module.css";
 import { getProfile, logoutUser } from "../../../api/authApi";
 import { Modal } from "../../modal/Modal";
 import { Link } from "react-router-dom";
+import {UserContext, UserContextType } from "../../userContext/UserContext";
 
 export function UserBlock() {
-  const [user, setUser] = useState(null);
+  
+
+  // const [user, setUser] = useState(null);
+  const value = useContext(UserContext)
+  let user, setUser:Dispatch<SetStateAction<null>>;
+  if (value) {({user,setUser} = value)};
+
+
   const [isModalOpen, setModalOpen] = useState(false);
 
   const openModal = () => setModalOpen(true);

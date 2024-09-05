@@ -5,9 +5,10 @@ import {
   setFavoritesFilms,
 } from "../../../api/authApi";
 import styles from "./favoriteBtn.module.css";
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
 import { Movie } from "../Hero";
 import { Modal } from "../../../components/modal/Modal";
+import { UserContext } from "../../../components/userContext/UserContext";
 
 export function FavoriteBtn({ film }: { film: Movie }) {
   //   const [localFavorites, setLocalFavorites] = useState([]);
@@ -16,7 +17,10 @@ export function FavoriteBtn({ film }: { film: Movie }) {
   //   setLocalFavorites(LSFavorites)
 
   const [isModalOpen, setModalOpen] = useState(false);
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
+  const value = useContext(UserContext)
+  let user:any, setUser:Dispatch<SetStateAction<null>>;
+  if (value) {({user,setUser} = value)};
 
   useEffect(() => {
     const fetchUserProfile = async () => {
