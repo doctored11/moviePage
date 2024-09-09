@@ -18,18 +18,17 @@
 } */
 
 .modalContent {
-
-  position: fixed ;
+  position: fixed;
   left: 50%;
   top: 50vh;
-  transform: translateX(-50%) translateY(-50%) ;
+  transform: translateX(-50%) translateY(-50%);
 
   background: white;
   padding: 64px 40px;
   border-radius: var(--border-rad);
   min-width: 300px;
   max-width: 450px;
- 
+
   z-index: 51;
 
   display: flex;
@@ -126,14 +125,29 @@
 
 .videoModalContent {
   width: 70vw;
-  color:var(--color-white);
-  max-width: 100%; 
-  height: auto;   
+  color: var(--color-white);
+  max-width: 100%;
+  height: auto;
   padding: 0;
-  
 }
 
-.closeButtonVideo{
+.closeButtonVideo {
   right: -8%;
   z-index: 12;
+}
+
+@media (max-width: 550px) {
+  .modalContent{
+    padding: 64px 20px;
+    min-width: 80%;
+    max-width: 90vw;
+    /* align-items: stretch; */
+  }
+  .modalContent > input{
+    width: 100%;
+  }
+  .closeButton{
+    right: 10px;
+    top: 10px;
+  }
 }

@@ -10,7 +10,6 @@ import { Movie } from "./Hero";
 import { FavoriteBtn } from "./favoriteBtn/FavoriteBtn";
 import { ModalVideo } from "../modal/ModalVideo";
 
-// todo заадаптировать от 900px примерно картинку в колонку
 
 export function HeroRandom() {
   const [randomFilm, setRandomFilm] = useState<Movie | null>(null);
@@ -30,11 +29,11 @@ export function HeroRandom() {
     if (!randomFilm) return;
     setFavoritesFilms(randomFilm.id);
     const lovrF = await getFavoritesFilms();
-    console.log("любимые", lovrF);
+   
   }
 
   useEffect(() => {
-    console.log("1111111111112")
+    
     const fetchUserProfile = async () => {
       try {
         const film = await handleResetFilm();
