@@ -1,8 +1,0 @@
-.heading{
-    color:var(--color-white);
-    margin-bottom: var(--big-indent);
-}
-.categoryBlock{
-    overflow: hidden;
-    background-color: var(--color-black);
-}
