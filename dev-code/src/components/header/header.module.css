@@ -1,0 +1,46 @@
+.header {
+  background-color: var(--color-black);
+  padding: 20px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 1.5rem 0;
+
+  border-color: orange;
+}
+
+.headerFrame {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+
+
+
+@media (max-width: 1080px) {
+  
+}
+
+@media (max-width: 780px) {
+  
+  .headerFrame {position: relative;}
+}
+
+@media (max-width: 550px) {
+}

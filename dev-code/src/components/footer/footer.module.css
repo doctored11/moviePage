@@ -1,0 +1,90 @@
+.footerFrame {
+  display: flex;
+  justify-content: space-between;
+}
+.footerSection {
+  padding-top: var(--big-indent);
+  padding-bottom: var(--big-indent);
+  background-color: var(--color-black);
+}
+.description {
+  font-family: "Play";
+  color: var(--color-white);
+
+  font-weight: 700;
+
+  text-align: left;
+}
+.descriptionSmall {
+  font-family: "Play";
+  font-size: 18px;
+  font-weight: 400;
+  opacity: 70%;
+
+  display: flex;
+}
+.socialPart {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+.socialItem {
+  border: 2px solid var(--color-white);
+  border-radius: 9px;
+  display: block;
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+}
+.socialItem:not(:last-child) {
+  margin-right: var(--small-indent);
+}
+.socialItem:focus svg > path {
+  fill: var(--color-second-accent);
+}
+.socialItem:focus {
+  border-color: var(--color-accent);
+}
+.cLog {
+  display: flex;
+  width: 25px;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+}
+.accentDescription {
+  margin-right: 1rem;
+}
+.contentPart {
+  display: flex;
+}
+
+@media (max-width: 780px) {
+  .contentPart {
+    flex-direction: column;
+  }
+  .description {
+    font-weight: 500;
+    font-size: 18px;
+    text-align: left;
+    margin-bottom: 0.5rem;
+  }
+  .descriptionSmall {
+    font-size: 14px;
+    font-weight: 300;
+  }
+  
+}
+@media (max-width: 550px) {
+  .contentPart{
+    margin-bottom: 1rem;
+  }
+  .footerFrame{
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,29 @@
+.cardList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: calc(2.5 * var(--small-indent));
+  padding-left: 0;
+  margin: 0;
+}
+@media (max-width: 550px) {
+  .cardList {
+    min-height: 230px;
+
+    grid-auto-flow: column;
+    grid-template-rows: 1fr;
+
+    gap: var(--big-indent);
+    padding-left: 0;
+    margin: 0;
+
+    overflow-x: auto;
+    overflow-y: visible;
+    -ms-overflow-style: none;
+
+    padding: var(--big-indent) 20px ;
+    margin: calc(-1 * var(--big-indent)) -20px ;
+  }
+  .cardList::-webkit-scrollbar {
+    display: none;
+  }
+}

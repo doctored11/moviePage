@@ -1,0 +1,21 @@
+.filmButton:not(:last-child) {
+  margin-right: var(--small-indent);
+  text-decoration: none;
+}
+
+.filmButton svg path {
+  stroke: var(--color-white);
+  stroke-width: 2px;
+  fill: none;
+}
+.filmButton.filmFavorite svg path {
+  stroke: none;
+  fill: var(--color-second-accent);
+}
+
+@media (max-width: 1100px) {
+  .filmButton {
+    max-height: 56px;
+  }
+ 
+}

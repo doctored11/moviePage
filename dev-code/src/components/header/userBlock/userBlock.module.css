@@ -1,0 +1,41 @@
+.logBtn {
+  border: none;
+  background-color: transparent;
+  color: var(--color-white);
+  cursor: pointer;
+  
+}
+.linkNavigation {
+  display: block;
+  position: relative;
+  outline: none;
+}
+.mobile{
+  display: none;
+}
+.linkNavigation::after {
+  content: "";
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  background-color: #dc5dfc;
+  left: 0;
+  bottom: -10px;
+
+  transition: opacity 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+  opacity: 0;
+}
+.linkNavigation:hover::after, .linkNavigation:focus::after {
+  
+  opacity: 1;
+}
+
+@media (max-width: 550px) {
+  .desktop{
+    display: none;
+  }
+  .mobile{
+    display: block;
+    transform: translateY(2px);
+  }
+}

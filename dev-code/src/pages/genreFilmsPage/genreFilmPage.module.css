@@ -1,0 +1,10 @@
+.categoryFrame{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.button{
+    margin: auto;
+    /* ну так */
+    margin-top: var(--big-indent);
+}
