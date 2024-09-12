@@ -14,7 +14,7 @@ export function GenreCard({ movie,genry }: GenryCardProps) {
     <div className={`${styles.cardContainer} `}>
       <Link 
         className={`${styles.sCard} ${styles.gCard} `}
-        to={`/${genry}`}
+        to={`/moviePage/${genry}`}
         style={{
           backgroundImage: `url(${movie.posterUrl})`,
         }}

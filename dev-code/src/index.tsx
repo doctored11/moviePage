@@ -30,10 +30,11 @@ const App = () => {
         <div id="modal"></div>
         <Routes>
           <Route path="/" element={<MainPage></MainPage>} />
-          <Route path="/movie/:id" element={<MoviePage />} />
-          <Route path="/categories" element={<CategoryPage />} />
-          <Route path="/:category" element={<GenreFilmPage />} />
-          <Route path="/person" element={<PersonPage />} />
+          <Route path="/moviePage/" element={<MainPage></MainPage>} />
+          <Route path="/moviePage/movie/:id" element={<MoviePage />} />
+          <Route path="/moviePage/categories" element={<CategoryPage />} />
+          <Route path="/moviePage/:category" element={<GenreFilmPage />} />
+          <Route path="/moviePage/person" element={<PersonPage />} />
         </Routes>
       </UserContext.Provider>
     </BrowserRouter>

@@ -18,6 +18,7 @@ interface User {
   surname: string;
   email: string;
 }
+// todo проверить список любимых фильмов - у разных юзеров!
 
 export function PersonPage() {
   const [favoriteList, setFavoriteList] = useState([]);
@@ -65,7 +66,7 @@ export function PersonPage() {
   const navigate = useNavigate();
   const handleLogout = async () => {
     await logoutUser();
-    navigate("/");
+    navigate("/moviePage/");
   };
 
   const block = (
