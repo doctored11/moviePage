@@ -30,14 +30,30 @@ export const regUser = async ({
   );
 };
 
-export function getLocalFavoriteFilms() {
+export async function getLocalFavoriteFilms() {
   const films = localStorage.getItem("Favorite");
-  return films ? JSON.parse(films) : [];
+  if (films) {
+    return JSON.parse(films);
+  }
+
+  try {
+    const serverFilms = await getFavoritesFilms();
+
+    if (serverFilms && serverFilms.length > 0) {
+      localStorage.setItem("Favorite", JSON.stringify(serverFilms));
+    }
+    return serverFilms || [];
+  } catch {
+    return []
+  }
+}
+export function deleteLocalFavoriteFilms() {
+  localStorage.setItem("Favorite",JSON.stringify([]))
 }
 
-function addFavoriteFilms(newFilms: Array<Movie>) {
+async function addFavoriteFilms(newFilms: Array<Movie>) {
   console.log("addF", newFilms);
-  const existingFilms = getLocalFavoriteFilms();
+  const existingFilms = await getLocalFavoriteFilms();
   const filmMap = new Map(existingFilms.map((film: Movie) => [film.id, film]));
 
   newFilms.forEach((film) => {
@@ -48,8 +64,8 @@ function addFavoriteFilms(newFilms: Array<Movie>) {
   localStorage.setItem("Favorite", JSON.stringify(updatedFilms));
 }
 
- function deleteFavoriteLocalFilm(id:number){
-  const lf: Movie[] = getLocalFavoriteFilms();
+ async function deleteFavoriteLocalFilm(id:number){
+  const lf: Movie[] = await getLocalFavoriteFilms();
   console.log("2");
   console.log(lf);
   const newFilmArr = lf.filter((film) => film.id != id);
@@ -66,6 +82,7 @@ export const loginUser = async ({ email, password }: User): Promise<any> => {
     email,
     password,
   });
+  deleteLocalFavoriteFilms()
 
   return apiRequest(
     "/auth/login",
@@ -76,6 +93,7 @@ export const loginUser = async ({ email, password }: User): Promise<any> => {
 };
 
 export const logoutUser = async (): Promise<any> => {
+  deleteLocalFavoriteFilms()
   return apiRequest("/auth/logout", "GET");
 };
 
@@ -87,6 +105,8 @@ export const registerUser = async ({
   name,
   surname,
 }: User) => {
+  deleteLocalFavoriteFilms()
+
   try {
     await regUser({ email, password, name, surname });
     await loginUser({ email, password });

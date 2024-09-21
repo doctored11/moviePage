@@ -35,7 +35,7 @@ export function GenreFilmPage() {
         onClick={handleUploadButtonClick}
       >
         {" "}
-        ЗАгрузить еще{" "}
+        Загрузить еще{" "}
       </button>
     </div>
   );

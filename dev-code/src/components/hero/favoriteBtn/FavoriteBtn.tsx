@@ -5,7 +5,13 @@ import {
   setFavoritesFilms,
 } from "../../../api/authApi";
 import styles from "./favoriteBtn.module.css";
-import React, { Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { Movie } from "../Hero";
 import { Modal } from "../../../components/modal/Modal";
 import { UserContext } from "../../../components/userContext/UserContext";
@@ -18,9 +24,11 @@ export function FavoriteBtn({ film }: { film: Movie }) {
 
   const [isModalOpen, setModalOpen] = useState(false);
   // const [user, setUser] = useState(null);
-  const value = useContext(UserContext)
-  let user:any, setUser:Dispatch<SetStateAction<null>>;
-  if (value) {({user,setUser} = value)};
+  const value = useContext(UserContext);
+  let user: any, setUser: Dispatch<SetStateAction<null>>;
+  if (value) {
+    ({ user, setUser } = value);
+  }
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -40,10 +48,13 @@ export function FavoriteBtn({ film }: { film: Movie }) {
   const closeModal = () => setModalOpen(false);
 
   useEffect(() => {
-    const LSFavorites = getLocalFavoriteFilms();
-    setIsFilmFavorite(
-      !!LSFavorites.find((LSFilm: Movie) => LSFilm.id === film.id)
-    );
+    async function getFavorites() {
+      const LSFavorites = await getLocalFavoriteFilms();
+      setIsFilmFavorite(
+        !!LSFavorites.find((LSFilm: Movie) => LSFilm.id === film.id)
+      );
+    }
+    getFavorites();
   }, [film]);
 
   async function handleAddFavorite() {
@@ -56,11 +67,11 @@ export function FavoriteBtn({ film }: { film: Movie }) {
   async function handleDeleteFavorite() {
     if (!film) return;
     await deleteFavoritesFilms(film.id);
-    updateFavoriteStatus();
+    await updateFavoriteStatus();
   }
 
-  function updateFavoriteStatus() {
-    const LSFavorites = getLocalFavoriteFilms();
+  async function updateFavoriteStatus() {
+    const LSFavorites = await getLocalFavoriteFilms();
     setIsFilmFavorite(
       !!LSFavorites.find((LSFilm: Movie) => LSFilm.id === film.id)
     );
@@ -72,7 +83,7 @@ export function FavoriteBtn({ film }: { film: Movie }) {
 
   async function handleClick() {
     console.log("profile 1 ");
-    
+
     if (user) {
       console.log("profile  2.1", user);
       isFilmFavorite ? handleDeleteFavorite() : handleAddFavorite();

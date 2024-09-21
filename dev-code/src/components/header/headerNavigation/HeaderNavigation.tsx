@@ -46,7 +46,7 @@ export function HeaderNavigation() {
         <ul className={styles.navigationUl}>
           <li className={`${styles.navItem}  ${styles.linkNavigation} `} >
             <Link
-              to="/moviePage"
+              to="/moviePage/main"
               className={`${styles.navLink} ${styles.mainLink} simpleTxt`}    
             > 
               <span className={styles.text}>Главная</span>

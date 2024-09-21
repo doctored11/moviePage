@@ -20,17 +20,23 @@ interface User {
 }
 // todo проверить список любимых фильмов - у разных юзеров!
 
-export function PersonPage() {
+export  function PersonPage() {
   const [favoriteList, setFavoriteList] = useState([]);
   const [mode, setMode] = useState<"films" | "profile">("films");
   const [user, setUser] = useState<User | null>(null);
   useEffect(() => {
-    setFavoriteList(getLocalFavoriteFilms());
+    async function fetchFavoriteList() {
+      const favorites = await getLocalFavoriteFilms();
+      setFavoriteList(favorites);
+    }
+    fetchFavoriteList();
   }, []);
 
-  const handleFavoriteUpdate = () => {
-    setFavoriteList(getLocalFavoriteFilms());
+  const handleFavoriteUpdate = async () => {
+    const updatedFavorites = await getLocalFavoriteFilms();
+    setFavoriteList(updatedFavorites);
   };
+  
   useEffect(() => {
     async function getUser() {
       const activeUser = await getProfile();
@@ -46,7 +52,7 @@ export function PersonPage() {
 
       buttons.forEach((button) => {
         const span = button.querySelector("span");
-        if (!span) return
+        if (!span) return;
         if (window.innerWidth < 650) {
           span.textContent = button.getAttribute("data-short-text");
         } else {
@@ -66,7 +72,7 @@ export function PersonPage() {
   const navigate = useNavigate();
   const handleLogout = async () => {
     await logoutUser();
-    navigate("/moviePage/");
+    navigate("/moviePage/main");
   };
 
   const block = (
