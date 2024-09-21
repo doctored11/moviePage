@@ -13,7 +13,7 @@ export function SimpleCard({ movie, num }: SimpleCardProps) {
     <div className={styles.cardContainer}>
       <Link 
         className={styles.sCard}
-        to={`/moviePage/movie/${movie.id}`}
+        to={`/movie/${movie.id}`}
         style={{
           backgroundImage: `url(${movie.posterUrl})`,
         }}
