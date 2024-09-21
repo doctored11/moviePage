@@ -25,7 +25,7 @@ const App = () => {
   const [user, setUser] = useState(null);
 
   return (
-    <BrowserRouter basename="/moviePage" >
+    <BrowserRouter >
       <UserContext.Provider value={{ user, setUser }}>
         <div id="modal"></div>
         <Routes>
