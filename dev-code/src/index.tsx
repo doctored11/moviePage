@@ -6,7 +6,8 @@ import React, { useState } from "react";
 import { MainPage } from "./pages/main/MainPage";
 import "./styles/normalize.css";
 import "./styles/global.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, HashRouter } from "react-router-dom";
+
 import { MoviePage } from "./pages/moviePage/MoviePage";
 import { createRoot } from "react-dom/client";
 import { CategoryPage } from "./pages/categoryPage/CategoryPage";
@@ -25,7 +26,8 @@ const App = () => {
   const [user, setUser] = useState(null);
 
   return (
-    <BrowserRouter >
+    // BrowserRouter
+    <HashRouter>
       <UserContext.Provider value={{ user, setUser }}>
         <div id="modal"></div>
         <Routes>
@@ -38,10 +40,9 @@ const App = () => {
           <Route path="/:category" element={<GenreFilmPage />} />
           <Route path="/person/" element={<PersonPage />} />
           <Route path="*" element={<MainPage></MainPage>} />
-
         </Routes>
       </UserContext.Provider>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
