@@ -25,7 +25,7 @@ const App = () => {
   const [user, setUser] = useState(null);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/moviePage" >
       <UserContext.Provider value={{ user, setUser }}>
         <div id="modal"></div>
         <Routes>
@@ -36,6 +36,8 @@ const App = () => {
           <Route path="/moviePage/categories" element={<CategoryPage />} />
           <Route path="/moviePage/:category" element={<GenreFilmPage />} />
           <Route path="/moviePage/person/" element={<PersonPage />} />
+          <Route path="*" element={<MainPage></MainPage>} />
+
         </Routes>
       </UserContext.Provider>
     </BrowserRouter>
