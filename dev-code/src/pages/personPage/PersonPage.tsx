@@ -75,7 +75,7 @@ export  function PersonPage() {
   const navigate = useNavigate();
   const handleLogout = async () => {
     await logoutUser();
-    navigate("/moviePage/main");
+    navigate("/main");
   };
 
   const block = (

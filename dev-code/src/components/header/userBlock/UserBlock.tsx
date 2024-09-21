@@ -38,13 +38,13 @@ export function UserBlock() {
       {user && (
         <>
           <Link
-            to="/moviePage/person"
+            to="/person"
             className={`simpleTxt ${styles.logBtn} ${styles.linkNavigation} ${styles.desktop}`}
           >
             {user}
           </Link>
           <Link
-            to="/moviePage/person"
+            to="/person"
             className={`simpleTxt ${styles.logBtn} ${styles.linkNavigation}  ${styles.mobile}`}
           >
             <svg
