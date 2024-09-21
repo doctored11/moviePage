@@ -20,7 +20,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'index.js',
-        publicPath: './'
+        publicPath: '/'
 
     },
     module: {
@@ -35,7 +35,7 @@ module.exports = {
                     {
                         loader: 'file-loader',
                         options: {
-                            publicPath: './',
+                            publicPath: '/source/',
                             outputPath: 'src/',
                             name: '[name].[ext]',
                         },

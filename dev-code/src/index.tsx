@@ -35,7 +35,7 @@ const App = () => {
           <Route path="/moviePage/movie/:id" element={<MoviePage />} />
           <Route path="/moviePage/categories" element={<CategoryPage />} />
           <Route path="/moviePage/:category" element={<GenreFilmPage />} />
-          <Route path="/moviePage/person" element={<PersonPage />} />
+          <Route path="/moviePage/person/" element={<PersonPage />} />
         </Routes>
       </UserContext.Provider>
     </BrowserRouter>

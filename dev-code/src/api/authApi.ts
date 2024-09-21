@@ -32,7 +32,8 @@ export const regUser = async ({
 
 export async function getLocalFavoriteFilms() {
   const films = localStorage.getItem("Favorite");
-  if (films) {
+
+  if (films !="[]" && films) {
     return JSON.parse(films);
   }
 
@@ -82,7 +83,8 @@ export const loginUser = async ({ email, password }: User): Promise<any> => {
     email,
     password,
   });
-  deleteLocalFavoriteFilms()
+  deleteLocalFavoriteFilms();
+  getFavoritesFilms();
 
   return apiRequest(
     "/auth/login",
@@ -121,9 +123,10 @@ export async function getFavoritesFilms() {
   try {
     const films = await apiRequest("/favorites");
     addFavoriteFilms(films);
-    return films;
+    return films || [];
   } catch {
     console.error("ошибка получения любимых картин");
+    return []
   }
 }
 

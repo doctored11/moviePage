@@ -25,9 +25,19 @@ export  function PersonPage() {
   const [mode, setMode] = useState<"films" | "profile">("films");
   const [user, setUser] = useState<User | null>(null);
   useEffect(() => {
+    async function getUser() {
+      const activeUser = await getProfile();
+      setUser(activeUser);
+    }
+
+    getUser();
+  }, []);
+  useEffect(() => {
+    console.log("загрузил страницу пользователя эффект" )
     async function fetchFavoriteList() {
       const favorites = await getLocalFavoriteFilms();
       setFavoriteList(favorites);
+      console.log("получаем фаворитов юзера",favorites )
     }
     fetchFavoriteList();
   }, []);
@@ -37,14 +47,7 @@ export  function PersonPage() {
     setFavoriteList(updatedFavorites);
   };
   
-  useEffect(() => {
-    async function getUser() {
-      const activeUser = await getProfile();
-      setUser(activeUser);
-    }
-
-    getUser();
-  }, []);
+ 
 
   useEffect(() => {
     const handleResize = () => {
