@@ -35,7 +35,7 @@ module.exports = {
                     {
                         loader: 'file-loader',
                         options: {
-                            publicPath: './',
+                            publicPath: '/moviePage/',
                             outputPath: 'src/',
                             name: '[name].[ext]',
                         },
