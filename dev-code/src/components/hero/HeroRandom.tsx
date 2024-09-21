@@ -79,7 +79,7 @@ export function HeroRandom() {
                 Трейлер
               </button>
               <Link
-                to={`/moviePage/movie/${randomFilm.id}`}
+                to={`/movie/${randomFilm.id}`}
                 className={`btn    ${styles.filmButton}   ${styles.aboutButton}`}
               >
                 О Фильме
