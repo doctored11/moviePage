@@ -35,7 +35,7 @@ module.exports = {
                     {
                         loader: 'file-loader',
                         options: {
-                            publicPath: '/source/',
+                            publicPath: '/',
                             outputPath: 'src/',
                             name: '[name].[ext]',
                         },
