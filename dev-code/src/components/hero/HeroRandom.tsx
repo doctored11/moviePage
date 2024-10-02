@@ -86,7 +86,7 @@ export function HeroRandom() {
               </Link>
               <FavoriteBtn film={randomFilm}></FavoriteBtn>
               <button
-                className={`btn btnSmall  ${styles.filmButton}`}
+                className={`btn btnSmall  ${styles.filmButton} ${styles.resetBtn}`}
                 onClick={handleResetFilm}
               >
                 <svg
