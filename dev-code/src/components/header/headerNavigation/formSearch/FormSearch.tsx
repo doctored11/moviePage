@@ -7,11 +7,10 @@ import { Movie } from "../../../hero/Hero";
 export function FormSearch() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<Movie[]>([]);
- 
 
   function handleClick() {
-    console.log("00_)0");
     setResults([]);
+    
   }
 
   const debouncedFetchResults = useCallback(
@@ -44,6 +43,11 @@ export function FormSearch() {
     const value = event.target.value;
     setQuery(value.trim());
   }
+  function handleClear(event: React.ChangeEvent<HTMLInputElement>) {
+    console.log("Blur")
+    if (results.length >0 ) return
+    setQuery("");
+  }
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
   }
@@ -54,7 +58,9 @@ export function FormSearch() {
         type="text"
         placeholder="Поиск"
         className={styles.searchInput}
+        value={query} 
         onChange={handleOnChange}
+        onBlur={handleClear}
       />
       <button type="submit" className={styles.searchButton} tabIndex={-1}>
         <svg
@@ -74,7 +80,7 @@ export function FormSearch() {
         <DropDownList
           movies={results}
           click={handleClick}
-          handleToClose={() => setResults([])}
+          handleToClose={() => {setResults([]);setQuery("");}}
         ></DropDownList>
       )}
     </form>

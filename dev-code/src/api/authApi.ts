@@ -33,27 +33,16 @@ export const regUser = async ({
 export async function getLocalFavoriteFilms() {
   const films = localStorage.getItem("Favorite");
 
-  if (films !="[]" && films) {
+  if (films != "[]" && films) {
     return JSON.parse(films);
   }
-
-  try {
-    const serverFilms = await getFavoritesFilms();
-
-    if (serverFilms && serverFilms.length > 0) {
-      localStorage.setItem("Favorite", JSON.stringify(serverFilms));
-    }
-    return serverFilms || [];
-  } catch {
-    return []
-  }
+  return [];
 }
 export function deleteLocalFavoriteFilms() {
-  localStorage.setItem("Favorite",JSON.stringify([]))
+  localStorage.setItem("Favorite", JSON.stringify([]));
 }
 
 async function addFavoriteFilms(newFilms: Array<Movie>) {
-  console.log("addF", newFilms);
   const existingFilms = await getLocalFavoriteFilms();
   const filmMap = new Map(existingFilms.map((film: Movie) => [film.id, film]));
 
@@ -65,15 +54,14 @@ async function addFavoriteFilms(newFilms: Array<Movie>) {
   localStorage.setItem("Favorite", JSON.stringify(updatedFilms));
 }
 
- async function deleteFavoriteLocalFilm(id:number){
+async function deleteFavoriteLocalFilm(id: number) {
   const lf: Movie[] = await getLocalFavoriteFilms();
-  console.log("2");
-  console.log(lf);
-  const newFilmArr = lf.filter((film) => film.id != id);
-  console.log(newFilmArr);
-  localStorage.setItem("Favorite", JSON.stringify(newFilmArr));
 
+  const newFilmArr = lf.filter((film) => film.id != id);
+
+  localStorage.setItem("Favorite", JSON.stringify(newFilmArr));
 }
+
 export const getProfile = async (): Promise<any> => {
   return apiRequest("/profile");
 };
@@ -83,8 +71,8 @@ export const loginUser = async ({ email, password }: User): Promise<any> => {
     email,
     password,
   });
-  deleteLocalFavoriteFilms();
-  getFavoritesFilms();
+  await deleteLocalFavoriteFilms();
+  
 
   return apiRequest(
     "/auth/login",
@@ -95,7 +83,7 @@ export const loginUser = async ({ email, password }: User): Promise<any> => {
 };
 
 export const logoutUser = async (): Promise<any> => {
-  deleteLocalFavoriteFilms()
+  deleteLocalFavoriteFilms();
   return apiRequest("/auth/logout", "GET");
 };
 
@@ -107,26 +95,30 @@ export const registerUser = async ({
   name,
   surname,
 }: User) => {
-  deleteLocalFavoriteFilms()
+  deleteLocalFavoriteFilms();
 
   try {
     await regUser({ email, password, name, surname });
-    await loginUser({ email, password });
-    const profile = await getProfile();
-    console.log(profile);
+    // await loginUser({ email, password });
+    // const profile = await getProfile();
   } catch (error) {
     console.error(error);
+    throw error
   }
 };
 
 export async function getFavoritesFilms() {
   try {
     const films = await apiRequest("/favorites");
-    addFavoriteFilms(films);
+
+    if (films && films.length > 0) {
+      localStorage.setItem("Favorite", JSON.stringify(films));
+    }
+
     return films || [];
   } catch {
     console.error("ошибка получения любимых картин");
-    return []
+    return [];
   }
 }
 
@@ -142,6 +134,7 @@ export async function setFavoritesFilms(id: number) {
   const body = new URLSearchParams({
     id: String(id),
   });
+
   try {
     const profile = await getProfile();
     if (!profile) return;
@@ -151,14 +144,13 @@ export async function setFavoritesFilms(id: number) {
       { "Content-Type": "application/x-www-form-urlencoded" },
       body
     );
-  } catch {}
+  } catch {
+    console.error("ошибка добваления фильма в избранное");
+  }
 }
 
 export async function deleteFavoritesFilms(id: number) {
-  console.log("1", id);
-
-  deleteFavoriteLocalFilm(id)
-  console.log("3");
+  deleteFavoriteLocalFilm(id);
 
   try {
     const profile = await getProfile();
@@ -167,5 +159,4 @@ export async function deleteFavoritesFilms(id: number) {
       "Content-Type": "application/x-www-form-urlencoded",
     });
   } catch {}
-  console.log("4");
 }

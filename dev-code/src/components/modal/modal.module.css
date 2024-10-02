@@ -1,7 +1,10 @@
 * {
   /* border: 2px solid rgba(4, 175, 4, 0.568); */
 }
-
+@font-face {
+  font-family: "Play";
+  src: url("../../source/fonts/play/Play-Regular.ttf");
+}
 /* .modalOverlay {
   position: fixed;
   top: 0;
@@ -38,6 +41,28 @@
   justify-content: center;
 }
 
+.formContainer{
+  display: flex;
+  flex-direction: column;
+}
+.modalTxtBold{
+  font-family: "Play";
+  margin-bottom: 22px;
+  text-align: center;
+  
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28px;
+}
+.modalTxt{
+  font-family: "Play";
+  margin-bottom: 18px;
+  text-align: center;
+  
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+}
 .closeButton {
   position: absolute;
   top: 10px;

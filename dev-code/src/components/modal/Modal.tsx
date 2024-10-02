@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
 import styles from "./modal.module.css";
-import { getProfile, loginUser, registerUser } from "../../api/authApi";
+import {
+  getFavoritesFilms,
+  getProfile,
+  loginUser,
+  registerUser,
+} from "../../api/authApi";
 import { Logo } from "../logo/Logo";
 import {
   validateEmail,
@@ -13,6 +18,17 @@ import {
   validateForm,
 } from "./validation";
 import { useClickAway } from "../../components/сlickAwayZone/ClickAwayContext";
+import { RegistrationBlock } from "./samples/RegistrationBlock.module";
+import { AuthorizationBlock } from "./samples/AuthorizationBlock.module";
+
+interface FormData {
+  email: string;
+  password: string;
+  secondPassword?: string;
+  name?: string;
+  surname?: string;
+  isRegister: boolean;
+}
 
 interface ModalProps {
   isOpen: boolean;
@@ -20,34 +36,57 @@ interface ModalProps {
 }
 
 export function Modal({ isOpen, onClose }: ModalProps) {
-  const [isRegister, setIsRegister] = useState(true);
+  const [isRegister, setIsRegister] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [secondPassword, setSecondPassword] = useState("");
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [registrarionText, setRegistrarionText] = useState(
+    "Регистрация завершена"
+  );
+
+  const [formData, setFormData] = useState<FormData>({
+    email: "",
+    password: "",
+    secondPassword: "",
+    name:"",
+    surname:"",
+    isRegister: false,
+  });
 
   const [errors, setErrors] = useState<any>({});
   const [isFormValid, setIsFormValid] = useState(false);
-
   useEffect(() => {
-    const formErrors = validateForm(
+    const formErrors = validateForm({
       email,
       password,
       secondPassword,
       name,
       surname,
-      isRegister
-    );
-    // setErrors(formErrors);
+      isRegister,
+    });
+
     setIsFormValid(Object.values(formErrors).every((error) => error === null));
   }, [email, password, secondPassword, name, surname, isRegister]);
 
   const { setIsVisible, setHandleClose } = useClickAway();
 
   useEffect(() => {
-    setIsVisible(isOpen);
-    setHandleClose(()=> onClose);
+    if (isOpen) {
+      setFormData({
+        email: "",
+        password: "",
+        secondPassword: "",
+        name: "",
+        surname: "",
+        isRegister: false,
+      });
+
+      setIsVisible(isOpen);
+      setHandleClose(() => onClose);
+    }
   }, [isOpen, onClose]);
 
   useEffect(() => {
@@ -62,38 +101,80 @@ export function Modal({ isOpen, onClose }: ModalProps) {
     }
   }, [isOpen]);
 
+  function validateForm(formData: FormData) {
+    const errors = {
+      email: validateEmail(formData.email),
+      password: validatePassword(formData.password),
+      secondPassword: formData.isRegister
+        ? validateSecondPassword(
+            formData.password,
+            formData.secondPassword || ""
+          )
+        : null,
+      name: formData.isRegister ? validateName(formData.name || "") : null,
+      surname: formData.isRegister
+        ? validateSurname(formData.surname || "")
+        : null,
+    };
+
+    return errors;
+  }
+
+  if (!isOpen) {
+    return null;
+  }
   const handleRegister = async () => {
     try {
       await registerUser({ email, password, name, surname });
-      alert("Регистрация успешна!");
-      onClose();
+      setRegistrarionText("Регистрация завершена");
+      setShowSuccessMessage(true);
+
+      // onClose();
     } catch (er) {
-      alert("Ошибка регистрации: " + (er as Error).message);
+      setRegistrarionText("Ошибка регистрации");
+      setShowSuccessMessage(true);
+      console.error("Ошибка регистрации: " + (er as Error).message);
     }
   };
 
   const handleLogin = async () => {
-    console.log("login");
-    const formErrors = validateForm(email, password, "", "", "", isRegister);
+    const formErrors = validateForm({
+      email,
+      password,
+      secondPassword: "",
+      name: "",
+      surname: "",
+      isRegister,
+    });
+
     setErrors(formErrors);
-    console.log(formErrors);
+
     if (
       Object.values(formErrors).some((error) => error !== "" && error !== null)
     ) {
       return;
     }
     try {
-      console.log("login1");
       await loginUser({ email, password });
-      alert("Вход успешен!");
+      await getFavoritesFilms();
+      setErrors({});
+      console.log("Вход успешен!");
       onClose();
     } catch (error) {
-      console.log("login2");
-      alert("Ошибка входа: " + (error as Error).message);
+      console.error("Ошибка входа: " + (error as Error).message);
+      setErrors((prevErrors: any) => ({
+        ...prevErrors,
+        password: "не верные данные",
+      }));
     }
   };
 
   const handleChange = (field: string, value: string) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [field]: value,
+    }));
+
     let error: string | null;
     switch (field) {
       case "email":
@@ -126,6 +207,24 @@ export function Modal({ isOpen, onClose }: ModalProps) {
     return null;
   }
 
+  const renderSuccessScreen = (
+    <div className={`${styles.successContent} ${styles.formContainer}`}>
+      <h2 className={` ${styles.modalTxtBold}`}>{registrarionText}</h2>
+      <p className={` ${styles.modalTxt}`}>
+        Используйте вашу электронную почту для входа
+      </p>
+      <button
+        className={`btn btn--active ${styles.mainBtn}`}
+        onClick={() => {
+          setIsRegister(false);
+          setShowSuccessMessage(false);
+        }}
+      >
+        Войти
+      </button>
+    </div>
+  );
+
   const modalBlock = ReactDOM.createPortal(
     //  <div className={styles.modalOverlay}>
     <div className={styles.modalContent}>
@@ -146,106 +245,26 @@ export function Modal({ isOpen, onClose }: ModalProps) {
 
       <Logo fontSize={28}></Logo>
 
-      {isRegister ? (
-        <>
-          <input
-            className={`${styles.input} ${errors.email && styles.errorInput}`}
-            type="email"
-            placeholder="Почта"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            onBlur={(e) => handleChange("email", e.target.value)}
-          />
-
-          <input
-            className={`${styles.input}  ${errors.name && styles.errorInput} `}
-            type="text"
-            placeholder="Имя"
-            value={name}
-            onChange={(e) => handleChange("name", e.target.value)}
-          />
-
-          <input
-            className={`${styles.input} ${errors.surname && styles.errorInput}`}
-            type="text"
-            placeholder="Фамилия"
-            value={surname}
-            onChange={(e) => handleChange("surname", e.target.value)}
-          />
-
-          <input
-            className={`${styles.input} ${
-              errors.password && styles.errorInput
-            }`}
-            type="password"
-            placeholder="Пароль"
-            value={password}
-            onChange={(e) => handleChange("password", e.target.value)}
-          />
-
-          <input
-            className={`${styles.input} password   ${
-              errors.secondPassword && styles.errorInput
-            }`}
-            type="password"
-            placeholder="Подтвердите пароль"
-            value={secondPassword}
-            onChange={(e) => handleChange("secondPassword", e.target.value)}
-          />
-
-          <button
-            onClick={handleRegister}
-            className={`btn btn--active ${styles.mainBtn}`}
-            disabled={!isFormValid}
-          >
-            Зарегистрироваться
-          </button>
-          <button
-            onClick={() => setIsRegister(false)}
-            className={`${styles.secondBtn}`}
-          >
-            Уже есть аккаунт? Войти
-          </button>
-        </>
+      {showSuccessMessage ? (
+        renderSuccessScreen
+      ) : isRegister ? (
+        <RegistrationBlock
+          formData={formData}
+          errors={errors}
+          handleChange={handleChange}
+          handleRegister={handleRegister}
+          isFormValid={isFormValid}
+          setIsRegister={setIsRegister}
+        />
       ) : (
-        <>
-          <input
-            className={`${styles.input} simpleTxt ${
-              errors.email && styles.errorInput
-            }`}
-            type="email"
-            placeholder="Почта"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            onBlur={(e) => handleChange("email", e.target.value)}
-          />
-
-          <input
-            className={`${styles.input} simpleTxt ${
-              errors.seconpassworddPassword && styles.errorInput
-            }`}
-            type="password"
-            placeholder="Пароль"
-            value={password}
-            onChange={(e) => handleChange("password", e.target.value)}
-          />
-          {/* {errors.password && (
-              <div className={styles.error}>{errors.password}</div>
-            )} */}
-          <button
-            onClick={handleLogin}
-            className={`btn btn--active ${styles.mainBtn}`}
-            disabled={!isFormValid}
-          >
-            Войти
-          </button>
-          <button
-            onClick={() => setIsRegister(true)}
-            className={`${styles.secondBtn}`}
-          >
-            Нет аккаунта? Зарегистрироваться
-          </button>
-        </>
+        <AuthorizationBlock
+          formData={formData}
+          errors={errors}
+          handleChange={handleChange}
+          handleLogin={handleLogin}
+          isFormValid={isFormValid}
+          setIsRegister={setIsRegister}
+        />
       )}
     </div>,
     // </div>,

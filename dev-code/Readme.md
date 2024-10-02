@@ -1,8 +1,6 @@
 
-## ToDo:
+http://localhost:3003/moviePage/#/main
 
-
-
--доделать адаптив от 300px до 2500px (особенно header)
--причесать визуально
+..>dev-code> npm run dev
+..>dev-code>dist> serve -s
 
